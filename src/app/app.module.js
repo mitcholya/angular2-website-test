@@ -13,28 +13,28 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var ng2_bootstrap_1 = require('ng2-bootstrap/ng2-bootstrap');
-var ng2_bootstrap_2 = require('ng2-bootstrap/ng2-bootstrap');
-var ng2_bootstrap_3 = require('ng2-bootstrap/ng2-bootstrap');
-var ng2_bootstrap_4 = require('ng2-bootstrap/ng2-bootstrap');
-var ng2_bootstrap_5 = require('ng2-bootstrap/ng2-bootstrap');
+var ng2_bootstrap_1 = require('ng2-bootstrap');
+var ng2_bootstrap_2 = require('ng2-bootstrap');
+var ng2_bootstrap_3 = require('ng2-bootstrap');
+var ng2_bootstrap_4 = require('ng2-bootstrap');
+var ng2_bootstrap_5 = require('ng2-bootstrap');
 var ng2_slim_loading_bar_1 = require('ng2-slim-loading-bar');
-var ng2_bootstrap_6 = require('ng2-bootstrap/ng2-bootstrap');
+var ng2_bootstrap_6 = require('ng2-bootstrap');
 var app_component_1 = require('./app.component');
-// import { DateFormatPipe } from './shared/pipes/date-format.pipe';
-// import { HighlightDirective } from './shared/directives/highlight.directive';
-// import { HomeComponent } from './home/home.component';
-// import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
-// import { ScheduleEditComponent } from './schedules/schedule-edit.component';
-// import { ScheduleListComponent } from './schedules/schedule-list.component';
-// import { UserCardComponent } from './users/user-card.component';
-// import { UserListComponent } from './users/user-list.component';
-// import { routing } from './app.routes';
-// import { DataService } from './shared/services/data.service';
-// import { ConfigService } from './shared/utils/config.service';
-// import { ItemsService } from './shared/utils/items.service';
-// import { MappingService } from './shared/utils/mapping.service';
-// import { NotificationService } from './shared/utils/notification.service';
+var date_format_pipe_1 = require('./shared/pipes/date-format.pipe');
+var highlight_directive_1 = require('./shared/directives/highlight.directive');
+var home_component_1 = require('./home/home.component');
+var mobile_hide_directive_1 = require('./shared/directives/mobile-hide.directive');
+var schedule_edit_component_1 = require('./schedules/schedule-edit.component');
+var schedule_list_component_1 = require('./schedules/schedule-list.component');
+var user_card_component_1 = require('./users/user-card.component');
+var user_list_component_1 = require('./users/user-list.component');
+var app_routes_1 = require('./app.routes');
+var data_service_1 = require('./shared/services/data.service');
+var config_service_1 = require('./shared/utils/config.service');
+var items_service_1 = require('./shared/utils/items.service');
+var mapping_service_1 = require('./shared/utils/mapping.service');
+var notification_service_1 = require('./shared/utils/notification.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -46,28 +46,30 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 ng2_bootstrap_3.Ng2BootstrapModule,
-                ng2_bootstrap_4.ModalModule,
+                ng2_bootstrap_4.ModalModule.forRoot(),
                 ng2_bootstrap_5.ProgressbarModule,
-                ng2_bootstrap_1.PaginationModule,
-                // routing,
+                ng2_bootstrap_1.PaginationModule.forRoot(),
+                app_routes_1.routing,
                 ng2_bootstrap_6.TimepickerModule
             ],
             declarations: [
                 app_component_1.AppComponent,
-                // DateFormatPipe,
-                // HighlightDirective,
-                // HomeComponent,
-                // MobileHideDirective,
-                // ScheduleEditComponent,
-                // ScheduleListComponent,
+                date_format_pipe_1.DateFormatPipe,
+                highlight_directive_1.HighlightDirective,
+                home_component_1.HomeComponent,
+                mobile_hide_directive_1.MobileHideDirective,
+                schedule_edit_component_1.ScheduleEditComponent,
+                schedule_list_component_1.ScheduleListComponent,
                 ng2_slim_loading_bar_1.SlimLoadingBarComponent,
+                user_card_component_1.UserCardComponent,
+                user_list_component_1.UserListComponent
             ],
             providers: [
-                // ConfigService,
-                // DataService,
-                // ItemsService,
-                // MappingService,
-                // NotificationService,
+                config_service_1.ConfigService,
+                data_service_1.DataService,
+                items_service_1.ItemsService,
+                mapping_service_1.MappingService,
+                notification_service_1.NotificationService,
                 ng2_slim_loading_bar_1.SlimLoadingBarService
             ],
             bootstrap: [app_component_1.AppComponent]

@@ -45,7 +45,7 @@
                 defaultExtension: 'js'
             },
             'moment': { main: 'moment.js', defaultExtension: 'js' },
-            'ng2-bootstrap': { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
+            'ng2-bootstrap': { format: 'cjs', main: 'bundles/ng2-bootstrap.umd.js', defaultExtension: 'js' },
             'ng2-slim-loading-bar': { main: 'index.js', defaultExtension: 'js' },
             'symbol-observable': { main: 'index.js', defaultExtension: 'js' }
         }

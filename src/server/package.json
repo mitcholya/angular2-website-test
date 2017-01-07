@@ -1,0 +1,9 @@
+{
+  "name": "scheduler-web-ui",
+  "version": "1.0.0",
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "4.13.4"
+  },
+  "scripts": {}
+}
