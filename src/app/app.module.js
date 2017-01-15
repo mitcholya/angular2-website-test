@@ -20,6 +20,7 @@ var ng2_bootstrap_4 = require('ng2-bootstrap');
 var ng2_bootstrap_5 = require('ng2-bootstrap');
 var ng2_slim_loading_bar_1 = require('ng2-slim-loading-bar');
 var ng2_bootstrap_6 = require('ng2-bootstrap');
+var ng2_bootstrap_7 = require('ng2-bootstrap');
 var app_component_1 = require('./app.component');
 var date_format_pipe_1 = require('./shared/pipes/date-format.pipe');
 var highlight_directive_1 = require('./shared/directives/highlight.directive');
@@ -30,11 +31,15 @@ var schedule_list_component_1 = require('./schedules/schedule-list.component');
 var user_card_component_1 = require('./users/user-card.component');
 var user_list_component_1 = require('./users/user-list.component');
 var app_routes_1 = require('./app.routes');
+var search_bar_component_1 = require('./search/search-bar.component');
+var company_component_1 = require('./company/company.component');
+var login_component_1 = require('./login/login.component');
 var data_service_1 = require('./shared/services/data.service');
 var config_service_1 = require('./shared/utils/config.service');
 var items_service_1 = require('./shared/utils/items.service');
 var mapping_service_1 = require('./shared/utils/mapping.service');
 var notification_service_1 = require('./shared/utils/notification.service');
+var auth_service_1 = require('./shared/services/auth.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -44,13 +49,15 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 ng2_bootstrap_2.DatepickerModule,
                 forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 http_1.HttpModule,
                 ng2_bootstrap_3.Ng2BootstrapModule,
                 ng2_bootstrap_4.ModalModule.forRoot(),
                 ng2_bootstrap_5.ProgressbarModule,
                 ng2_bootstrap_1.PaginationModule.forRoot(),
                 app_routes_1.routing,
-                ng2_bootstrap_6.TimepickerModule
+                ng2_bootstrap_6.TimepickerModule,
+                ng2_bootstrap_7.TypeaheadModule.forRoot()
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -62,7 +69,10 @@ var AppModule = (function () {
                 schedule_list_component_1.ScheduleListComponent,
                 ng2_slim_loading_bar_1.SlimLoadingBarComponent,
                 user_card_component_1.UserCardComponent,
-                user_list_component_1.UserListComponent
+                user_list_component_1.UserListComponent,
+                search_bar_component_1.SearchBarComponent,
+                company_component_1.CompanyComponent,
+                login_component_1.LoginComponent
             ],
             providers: [
                 config_service_1.ConfigService,
@@ -70,7 +80,8 @@ var AppModule = (function () {
                 items_service_1.ItemsService,
                 mapping_service_1.MappingService,
                 notification_service_1.NotificationService,
-                ng2_slim_loading_bar_1.SlimLoadingBarService
+                ng2_slim_loading_bar_1.SlimLoadingBarService,
+                auth_service_1.AuthService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

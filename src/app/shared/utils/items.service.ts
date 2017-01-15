@@ -57,4 +57,8 @@ export class ItemsService {
     getSerialized<T>(arg: any): T {
         return <T>JSON.parse(JSON.stringify(arg));
     }
+
+    reversedItems<T>(array: T[]): T[] {
+        return <T[]>_.reverse(array);
+    }
 }

@@ -1,0 +1,11 @@
+
+<input #searchinput placeholder="Поиск в УслугиРУ..." [(ngModel)]="queryText" (keyup)="searchService()" />
+<button class="btn btn-primary" (click)="searchService()">Поиск</button>
+
+<div *ngFor="let service of services2">
+  <div class="card" (click)="loadDetails(service.sid)">  
+  <h5> <a [routerLink]="['/company', service]">  Организация: {{service.title}} </a></h5>
+  <p>Категория: {{service.category}} </p>
+   </div>
+   <!--{{service.sid}} {{emptyResult}}-->
+</div>

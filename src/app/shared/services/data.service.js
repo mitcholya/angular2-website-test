@@ -23,8 +23,42 @@ var DataService = (function () {
         this.itemsService = itemsService;
         this.configService = configService;
         this._baseUrl = '';
+        this.databaseRef = firebase.database();
+        //placeRef: any = firebase.database().ref('place');
+        this.serviceRef = firebase.database().ref('service/');
+        this.storageRef = firebase.storage().ref();
         this._baseUrl = configService.getApiURI();
     }
+    DataService.prototype.getDatabaseRef = function () {
+        return this.databaseRef;
+    };
+    // getPlaceRef() {
+    //     return this.placeRef;
+    // }
+    // getPlaces() {
+    //     return this.placeRef.once('value');
+    // }
+    // addService(place, service) {
+    //     return this.placeRef.child('/' + place).push().set(service);
+    // }
+    // searchService() {
+    //     return this.placeRef.
+    // }
+    DataService.prototype.getServiceRef = function () {
+        return this.serviceRef;
+    };
+    DataService.prototype.addService = function (service) {
+        return this.serviceRef.push().set(service);
+    };
+    DataService.prototype.searchService = function (service) {
+        return this.serviceRef.orderByChild('service').equalTo(service).once('value');
+    };
+    DataService.prototype.getServices = function () {
+        return this.serviceRef.once('value');
+    };
+    DataService.prototype.getStorageRef = function () {
+        return this.storageRef;
+    };
     DataService.prototype.getUsers = function () {
         return this.http.get(this._baseUrl + 'users')
             .map(function (res) {

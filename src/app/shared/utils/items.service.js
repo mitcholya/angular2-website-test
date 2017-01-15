@@ -57,6 +57,9 @@ var ItemsService = (function () {
     ItemsService.prototype.getSerialized = function (arg) {
         return JSON.parse(JSON.stringify(arg));
     };
+    ItemsService.prototype.reversedItems = function (array) {
+        return _.reverse(array);
+    };
     ItemsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

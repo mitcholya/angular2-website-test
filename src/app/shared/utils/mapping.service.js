@@ -32,6 +32,24 @@ var MappingService = (function () {
         };
         return schedule;
     };
+    MappingService.prototype.getServices = function (snapshot) {
+        var services = [];
+        if (snapshot.val() == null)
+            return services;
+        var list = snapshot.val();
+        Object.keys(snapshot.val()).map(function (key) {
+            var service = list[key];
+            services.push({
+                sid: key,
+                location: service.location,
+                title: service.title,
+                category: service.category,
+                description: service.description,
+                phone: service.phone
+            });
+        });
+        return services;
+    };
     MappingService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [items_service_1.ItemsService])

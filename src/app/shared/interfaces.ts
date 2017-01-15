@@ -55,3 +55,18 @@ export class PaginatedResult<T> {
 export interface Predicate<T> {
     (item: T): boolean
 }
+
+export interface IService {
+    sid: string;
+    location: string;
+    title: string;
+    category: string;
+    description: string;
+    phone: string;
+
+}
+
+export interface UserCredentials {
+    email: string;
+    password: string;
+}

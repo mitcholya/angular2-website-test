@@ -93,6 +93,27 @@
     <div class="row">
         <div class="col-lg-12">
             <h3>Latest Features</h3>
+            <button class="btn btn-primary" (click)="addService()">Добавить Услугу</button>
+            <div>
+            <search-bar></search-bar>
+            </div>
+            <login></login>
+            <!--<pre class="card card-block card-header">Model: {{customSelected | json}}</pre>
+            <input [(ngModel)]="customSelected"
+            [typeahead]="statesComplex"
+             typeaheadOptionField="name"
+            class="form-control">-->
+
+            <!--<div id="search-component">
+                <h4>Hero Search</h4>
+                <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+                <div>
+                    <div *ngFor="let service of services | async" (click)="gotoDetail(hero)" class="search-result">
+                        {{service.title}}
+                    </div>
+                </div>
+            </div>-->
+
         </div>
     </div>
     <!-- /.row -->

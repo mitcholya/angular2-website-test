@@ -10,15 +10,63 @@ import { IUser, ISchedule, IScheduleDetails, Pagination, PaginatedResult } from 
 import { ItemsService } from '../utils/items.service';
 import { ConfigService } from '../utils/config.service';
 
+declare var firebase: any;
+
 @Injectable()
 export class DataService {
 
     _baseUrl: string = '';
 
+    databaseRef: any = firebase.database();
+    //placeRef: any = firebase.database().ref('place');
+    serviceRef:any = firebase.database().ref('service/');
+    storageRef: any = firebase.storage().ref();
+    
+
     constructor(private http: Http,
         private itemsService: ItemsService,
         private configService: ConfigService) {
         this._baseUrl = configService.getApiURI();
+    }
+
+    getDatabaseRef() {
+        return this.databaseRef;
+    }
+
+    // getPlaceRef() {
+    //     return this.placeRef;
+    // }
+
+    // getPlaces() {
+    //     return this.placeRef.once('value');
+    // }
+
+    // addService(place, service) {
+    //     return this.placeRef.child('/' + place).push().set(service);
+    // }
+
+    // searchService() {
+    //     return this.placeRef.
+    // }
+
+    getServiceRef() {
+        return this.serviceRef;
+    }
+
+    addService(service) {
+        return this.serviceRef.push().set(service);
+    }
+
+    searchService(service) {
+        return this.serviceRef.orderByChild('service').equalTo(service).once('value');
+    }
+
+    getServices() {
+        return this.serviceRef.once('value');
+    }
+
+    getStorageRef() {
+        return this.storageRef;
     }
 
     getUsers(): Observable<IUser[]> {
