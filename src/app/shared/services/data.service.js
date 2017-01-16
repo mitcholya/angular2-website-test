@@ -27,6 +27,7 @@ var DataService = (function () {
         //placeRef: any = firebase.database().ref('place');
         this.serviceRef = firebase.database().ref('service/');
         this.storageRef = firebase.storage().ref();
+        this.usersRef = firebase.database().ref('users');
         this._baseUrl = configService.getApiURI();
     }
     DataService.prototype.getDatabaseRef = function () {
@@ -58,6 +59,9 @@ var DataService = (function () {
     };
     DataService.prototype.getStorageRef = function () {
         return this.storageRef;
+    };
+    DataService.prototype.getUser = function (userUid) {
+        return this.usersRef.child(userUid).once('value');
     };
     DataService.prototype.getUsers = function () {
         return this.http.get(this._baseUrl + 'users')

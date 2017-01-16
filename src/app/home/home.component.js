@@ -9,19 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var data_service_1 = require('../shared/services/data.service');
+var auth_service_1 = require('../shared/services/auth.service');
 var HomeComponent = (function () {
     // searchTerm: string = '';
     // searchControl: FormControl;
     // items: any;
     //heroes: Observable<Hero[]>;
     //private searchTerms = new Subject<string>();
-    function HomeComponent() {
+    function HomeComponent(dataService, authService) {
         // console.log(this.data.getPlaces().then((snapshot) => {
         //     console.log(snapshot.val());
         // }));
         // console.log(this.data.searchService('Образование').then((snapshot) => {
         //     console.log(snapshot.val());
         // }));
+        this.dataService = dataService;
+        this.authService = authService;
+        this.firebaseAccount = {};
+        this.userData = {
+            username: ''
+        };
         // this.searchControl = new FormControl();
     }
     // search(term: string): void {
@@ -42,10 +50,15 @@ var HomeComponent = (function () {
         //         console.log(`Error in component ... ${error}`);
         //         return Observable.of<IService[]>([]);
         //     });
+        var _this = this;
         // this.setFilteredItems();
         // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
         //  this.setFilteredItems();
         // });
+        this.getUserData().then(function (snapshot) {
+            _this.userData = snapshot.val();
+            console.log(_this.userData);
+        });
     };
     // setFilteredItems() {
     //     this.items = this.dataSearch();
@@ -58,6 +71,10 @@ var HomeComponent = (function () {
             phone: "4-44-46"
         };
         //this.data.addService(service);
+    };
+    HomeComponent.prototype.getUserData = function () {
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        return this.dataService.getUser(this.authService.getLoggedInUser().uid);
     };
     // dataSearch(){
     //     this.data.getServices().then((snapshot) => {
@@ -94,7 +111,7 @@ var HomeComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [data_service_1.DataService, auth_service_1.AuthService])
     ], HomeComponent);
     return HomeComponent;
 }());

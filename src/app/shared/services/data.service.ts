@@ -21,6 +21,7 @@ export class DataService {
     //placeRef: any = firebase.database().ref('place');
     serviceRef:any = firebase.database().ref('service/');
     storageRef: any = firebase.storage().ref();
+    usersRef: any = firebase.database().ref('users');
     
 
     constructor(private http: Http,
@@ -67,6 +68,10 @@ export class DataService {
 
     getStorageRef() {
         return this.storageRef;
+    }
+
+    getUser(userUid: string) {
+        return this.usersRef.child(userUid).once('value');
     }
 
     getUsers(): Observable<IUser[]> {

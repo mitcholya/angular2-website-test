@@ -1,6 +1,8 @@
 import { Component, OnInit, trigger, state, style, animate, transition } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
+import { DataService } from '../shared/services/data.service';
+import { AuthService } from '../shared/services/auth.service';
 
 
 
@@ -33,7 +35,10 @@ declare let componentHandler: any;
 })
 export class HomeComponent implements OnInit {
 
-    
+    firebaseAccount: any = {};
+    userData:any = {
+        username: ''
+    };
 
     // searchTerm: string = '';
     // searchControl: FormControl;
@@ -43,7 +48,8 @@ export class HomeComponent implements OnInit {
     //heroes: Observable<Hero[]>;
     //private searchTerms = new Subject<string>();
 
-    constructor() {
+    constructor(private dataService: DataService,
+                private authService: AuthService) {
         // console.log(this.data.getPlaces().then((snapshot) => {
         //     console.log(snapshot.val());
         // }));
@@ -81,6 +87,10 @@ export class HomeComponent implements OnInit {
         //  this.setFilteredItems();
  
         // });
+        this.getUserData().then((snapshot) => {
+            this.userData = snapshot.val();
+            console.log(this.userData);
+        })
     }
 
     // setFilteredItems() {
@@ -96,8 +106,14 @@ export class HomeComponent implements OnInit {
             service: "Образование",
             phone: "4-44-46"
         }
+        
 
         //this.data.addService(service);
+    }
+
+    getUserData() {
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        return this.dataService.getUser(this.authService.getLoggedInUser().uid);
     }
 
     // dataSearch(){

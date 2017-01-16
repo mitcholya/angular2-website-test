@@ -98,6 +98,8 @@
             <search-bar></search-bar>
             </div>
             <login></login>
+            <!--<div *ngIf="userData.uid">Ваше uid: {{userData.uid}}</div>-->
+            <div *ngIf="userData.username">Ваше имя пользователя: {{userData.username}}</div>
             <!--<pre class="card card-block card-header">Model: {{customSelected | json}}</pre>
             <input [(ngModel)]="customSelected"
             [typeahead]="statesComplex"
