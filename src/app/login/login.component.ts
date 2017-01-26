@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     loginFirebaseAccountForm: FormGroup;
     email: AbstractControl;
     password: AbstractControl;
+    userName: string = '';
 
     constructor(
         public fb: FormBuilder,
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(signInForm: any): void {
-        var self = this;
+        //var self = this;
         if (this.loginFirebaseAccountForm.valid) {
 
             // let loader = this.loadingCtrl.create({
@@ -51,8 +52,11 @@ export class LoginComponent implements OnInit {
 
             console.log(user);
             this.authService.signInUser(user.email, user.password)
-                .then(function (result) {
+                .then((result) => {
                     // self.nav.setRoot(TabsPage);
+                    console.log('Привет');
+                    this.userName = 'Привет!!!';
+                    this.getUserName();
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -71,5 +75,16 @@ export class LoginComponent implements OnInit {
 
     register() {
         // this.nav.push(SignupPage);
+    }
+
+    signOut() {
+        return this.authService.signOut();
+    }
+
+    getUserName() {
+        let uid = this.authService.getLoggedInUser().uid;
+        this.dataService.getUsername(uid).then((snapshot) => {
+            this.userName = snapshot.val();
+        });
     }
 }

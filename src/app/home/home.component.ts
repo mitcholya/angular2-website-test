@@ -36,9 +36,8 @@ declare let componentHandler: any;
 export class HomeComponent implements OnInit {
 
     firebaseAccount: any = {};
-    userData:any = {
-        username: ''
-    };
+    userName:any = '';
+    userDataLoaded: boolean = false;
 
     // searchTerm: string = '';
     // searchControl: FormControl;
@@ -87,10 +86,39 @@ export class HomeComponent implements OnInit {
         //  this.setFilteredItems();
  
         // });
-        this.getUserData().then((snapshot) => {
-            this.userData = snapshot.val();
-            console.log(this.userData);
+        this.loadUserProfile();
+
+    }
+
+    // ngOnChanges(changes) {
+    // // Called right after our bindings have been checked but only
+    // // if one of our bindings has changed.
+    // //
+    // // changes is an object of the format:
+    // // {
+    // //   'prop': PropertyUpdate
+    // // }
+    // this.loadUserProfile();
+    // }
+
+    // ngDoCheck() {
+    // // Custom change detection
+    // this.loadUserProfile();
+    // }
+
+    loadUserProfile() {
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        if (this.firebaseAccount) {
+        this.userDataLoaded = false;
+
+        this.getUserName().then((snapshot) => {
+            this.userName = snapshot.val();
+            console.log(this.userName);
         })
+
+        this.userDataLoaded = true;
+        }
+
     }
 
     // setFilteredItems() {
@@ -111,9 +139,13 @@ export class HomeComponent implements OnInit {
         //this.data.addService(service);
     }
 
-    getUserData() {
-        this.firebaseAccount = this.authService.getLoggedInUser();
-        return this.dataService.getUser(this.authService.getLoggedInUser().uid);
+    getUserName() {
+
+        console.log(this.firebaseAccount);
+        //if (this.firebaseAccount) {
+            return this.dataService.getUsername(this.authService.getLoggedInUser().uid);
+        //}
+        
     }
 
     // dataSearch(){

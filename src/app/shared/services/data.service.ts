@@ -73,6 +73,10 @@ export class DataService {
     getUser(userUid: string) {
         return this.usersRef.child(userUid).once('value');
     }
+    
+    getUsername(userUid: string) {
+        return this.usersRef.child(userUid + '/username').once('value');
+    }
 
     getUsers(): Observable<IUser[]> {
         return this.http.get(this._baseUrl + 'users')

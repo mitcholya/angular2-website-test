@@ -29,3 +29,5 @@
             </div>
         </div>
     </form>
+    <button (click)="signOut()">Выход</button>
+    <div *ngIf="userName">Ваше имя пользователя: {{userName}}</div>

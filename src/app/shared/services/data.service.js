@@ -63,6 +63,9 @@ var DataService = (function () {
     DataService.prototype.getUser = function (userUid) {
         return this.usersRef.child(userUid).once('value');
     };
+    DataService.prototype.getUsername = function (userUid) {
+        return this.usersRef.child(userUid + '/username').once('value');
+    };
     DataService.prototype.getUsers = function () {
         return this.http.get(this._baseUrl + 'users')
             .map(function (res) {

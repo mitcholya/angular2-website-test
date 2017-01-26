@@ -27,9 +27,8 @@ var HomeComponent = (function () {
         this.dataService = dataService;
         this.authService = authService;
         this.firebaseAccount = {};
-        this.userData = {
-            username: ''
-        };
+        this.userName = '';
+        this.userDataLoaded = false;
         // this.searchControl = new FormControl();
     }
     // search(term: string): void {
@@ -50,15 +49,37 @@ var HomeComponent = (function () {
         //         console.log(`Error in component ... ${error}`);
         //         return Observable.of<IService[]>([]);
         //     });
-        var _this = this;
         // this.setFilteredItems();
         // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
         //  this.setFilteredItems();
         // });
-        this.getUserData().then(function (snapshot) {
-            _this.userData = snapshot.val();
-            console.log(_this.userData);
-        });
+        this.loadUserProfile();
+    };
+    // ngOnChanges(changes) {
+    // // Called right after our bindings have been checked but only
+    // // if one of our bindings has changed.
+    // //
+    // // changes is an object of the format:
+    // // {
+    // //   'prop': PropertyUpdate
+    // // }
+    // this.loadUserProfile();
+    // }
+    // ngDoCheck() {
+    // // Custom change detection
+    // this.loadUserProfile();
+    // }
+    HomeComponent.prototype.loadUserProfile = function () {
+        var _this = this;
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        if (this.firebaseAccount) {
+            this.userDataLoaded = false;
+            this.getUserName().then(function (snapshot) {
+                _this.userName = snapshot.val();
+                console.log(_this.userName);
+            });
+            this.userDataLoaded = true;
+        }
     };
     // setFilteredItems() {
     //     this.items = this.dataSearch();
@@ -72,9 +93,11 @@ var HomeComponent = (function () {
         };
         //this.data.addService(service);
     };
-    HomeComponent.prototype.getUserData = function () {
-        this.firebaseAccount = this.authService.getLoggedInUser();
-        return this.dataService.getUser(this.authService.getLoggedInUser().uid);
+    HomeComponent.prototype.getUserName = function () {
+        console.log(this.firebaseAccount);
+        //if (this.firebaseAccount) {
+        return this.dataService.getUsername(this.authService.getLoggedInUser().uid);
+        //}
     };
     // dataSearch(){
     //     this.data.getServices().then((snapshot) => {

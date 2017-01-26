@@ -17,6 +17,7 @@ var LoginComponent = (function () {
         this.fb = fb;
         this.dataService = dataService;
         this.authService = authService;
+        this.userName = '';
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginFirebaseAccountForm = this.fb.group({
@@ -27,7 +28,8 @@ var LoginComponent = (function () {
         this.password = this.loginFirebaseAccountForm.controls['password'];
     };
     LoginComponent.prototype.onSubmit = function (signInForm) {
-        var self = this;
+        var _this = this;
+        //var self = this;
         if (this.loginFirebaseAccountForm.valid) {
             // let loader = this.loadingCtrl.create({
             //     content: 'Signing in firebase..',
@@ -42,6 +44,9 @@ var LoginComponent = (function () {
             this.authService.signInUser(user.email, user.password)
                 .then(function (result) {
                 // self.nav.setRoot(TabsPage);
+                console.log('Привет');
+                _this.userName = 'Привет!!!';
+                _this.getUserName();
             }).catch(function (error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -59,6 +64,16 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.register = function () {
         // this.nav.push(SignupPage);
+    };
+    LoginComponent.prototype.signOut = function () {
+        return this.authService.signOut();
+    };
+    LoginComponent.prototype.getUserName = function () {
+        var _this = this;
+        var uid = this.authService.getLoggedInUser().uid;
+        this.dataService.getUsername(uid).then(function (snapshot) {
+            _this.userName = snapshot.val();
+        });
     };
     LoginComponent = __decorate([
         core_1.Component({
