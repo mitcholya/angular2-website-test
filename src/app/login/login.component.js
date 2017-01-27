@@ -45,7 +45,7 @@ var LoginComponent = (function () {
                 .then(function (result) {
                 // self.nav.setRoot(TabsPage);
                 console.log('Привет');
-                _this.userName = 'Привет!!!';
+                //this.userName = 'Привет!!!';
                 _this.getUserName();
             }).catch(function (error) {
                 // Handle Errors here.
@@ -66,6 +66,7 @@ var LoginComponent = (function () {
         // this.nav.push(SignupPage);
     };
     LoginComponent.prototype.signOut = function () {
+        this.userName = '';
         return this.authService.signOut();
     };
     LoginComponent.prototype.getUserName = function () {

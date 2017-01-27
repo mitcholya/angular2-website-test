@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
         //  this.setFilteredItems();
  
         // });
-        this.loadUserProfile();
+        //this.loadUserProfile();
 
     }
 

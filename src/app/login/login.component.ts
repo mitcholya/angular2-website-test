@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
                 .then((result) => {
                     // self.nav.setRoot(TabsPage);
                     console.log('Привет');
-                    this.userName = 'Привет!!!';
+                    //this.userName = 'Привет!!!';
                     this.getUserName();
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit {
     }
 
     signOut() {
+        this.userName = '';
         return this.authService.signOut();
     }
 

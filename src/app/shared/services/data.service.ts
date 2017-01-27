@@ -22,6 +22,7 @@ export class DataService {
     serviceRef:any = firebase.database().ref('service/');
     storageRef: any = firebase.storage().ref();
     usersRef: any = firebase.database().ref('users');
+    ordersRef:any = firebase.database().ref('orders');
     
 
     constructor(private http: Http,
@@ -56,6 +57,10 @@ export class DataService {
 
     addService(service) {
         return this.serviceRef.push().set(service);
+    }
+
+    addOrder(order) {
+        return this.ordersRef.push().set(order);
     }
 
     searchService(service) {

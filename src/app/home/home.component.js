@@ -53,7 +53,7 @@ var HomeComponent = (function () {
         // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
         //  this.setFilteredItems();
         // });
-        this.loadUserProfile();
+        //this.loadUserProfile();
     };
     // ngOnChanges(changes) {
     // // Called right after our bindings have been checked but only

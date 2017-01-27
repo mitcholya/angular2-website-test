@@ -66,6 +66,12 @@ export interface IService {
 
 }
 
+export interface IOrder {
+    oid: string;
+    title: string;
+    description: string;
+}
+
 export interface UserCredentials {
     email: string;
     password: string;

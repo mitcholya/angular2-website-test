@@ -1,3 +1,6 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="col-md-10 col-md-10 col-xs-10">
 <form [formGroup]="loginFirebaseAccountForm" (ngSubmit)="onSubmit(loginFirebaseAccountForm.value)">
         <!--<div [class.error]="!email.valid && email.touched">-->
             <label floating>Email address</label>
@@ -30,4 +33,7 @@
         </div>
     </form>
     <button (click)="signOut()">Выход</button>
-    <div *ngIf="userName">Ваше имя пользователя: {{userName}}</div>
+    <div *ngIf="userName!==''">Ваше имя пользователя: {{userName}}</div>
+            </div>
+        </div>    
+    </div>
