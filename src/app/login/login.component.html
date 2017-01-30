@@ -17,7 +17,10 @@
         <br/><br/>
         <button type="submit" class="custom-button" [disabled]="!loginFirebaseAccountForm.valid" block>Sign in</button>
         <br/>
-        <button (click)="register()">
+
+    </form>
+
+            <button (click)="register()">
             <!--<ion-icon name='flame'></ion-icon>-->
             Register a firebase account</button>
         <div padding>
@@ -31,9 +34,8 @@
                 </p>
             </div>
         </div>
-    </form>
     <button (click)="signOut()">Выход</button>
-    <div *ngIf="userName!==''">Ваше имя пользователя: {{userName}}</div>
+    <div>Ваше имя пользователя: {{userName}}</div>
             </div>
         </div>    
     </div>

@@ -71,6 +71,10 @@ export class DataService {
         return this.serviceRef.once('value');
     }
 
+    getOrders() {
+        return this.ordersRef.once('value');
+    }
+
     getStorageRef() {
         return this.storageRef;
     }

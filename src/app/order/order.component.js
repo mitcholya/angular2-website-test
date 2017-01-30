@@ -10,17 +10,66 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var data_service_1 = require('../shared/services/data.service');
+var mapping_service_1 = require('../shared/utils/mapping.service');
+var items_service_1 = require('../shared/utils/items.service');
+var auth_service_1 = require('../shared/services/auth.service');
+require('rxjs/add/operator/map');
+var _ = require('lodash');
 var OrderComponent = (function () {
-    function OrderComponent(dataService) {
+    function OrderComponent(dataService, mappingService, itemsService, authService) {
         this.dataService = dataService;
+        this.mappingService = mappingService;
+        this.itemsService = itemsService;
+        this.authService = authService;
+        this.firebaseAccount = {};
     }
+    OrderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        if (this.firebaseAccount) {
+            this.userLogged = true;
+        }
+        // this.authService.getLoggedInUser().
+        //     subscribe(() => {
+        //         console.log('Привет!!!');
+        //     })
+        // this.loadUser().
+        //     subscribe(() => {
+        //         this.userLogged = true;
+        //     })
+        this.dataService.getOrders().
+            then(function (snapshot) {
+            console.log(snapshot);
+            var arr = _this.mappingService.getOrders(snapshot);
+            _this.orders = _.uniqBy(arr, 'oid');
+        });
+        this.dataService.getOrders().
+            then(function (snapshot) {
+            console.log(snapshot.val());
+        });
+    };
+    // loadUser(): Observable<any>  {
+    //     return this.authService.getLoggedInUser();
+    // }
+    OrderComponent.prototype.showOrders = function () {
+        var _this = this;
+        this.dataService.getOrders().
+            then(function (snapshot) {
+            console.log(snapshot);
+            _this.orders = _this.mappingService.getOrders(snapshot);
+        });
+    };
     OrderComponent.prototype.addOrder = function () {
         var order = {
             title: 'Помочь по хозяайству',
-            description: 'Подмести полы'
+            description: 'Постирать белье'
         };
         this.dataService.addOrder(order);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], OrderComponent.prototype, "userLogged", void 0);
     OrderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -28,7 +77,7 @@ var OrderComponent = (function () {
             templateUrl: 'order.component.html',
             styleUrls: ['order.component.css']
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService])
+        __metadata('design:paramtypes', [data_service_1.DataService, mapping_service_1.MappingService, items_service_1.ItemsService, auth_service_1.AuthService])
     ], OrderComponent);
     return OrderComponent;
 }());

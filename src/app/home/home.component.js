@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var data_service_1 = require('../shared/services/data.service');
 var auth_service_1 = require('../shared/services/auth.service');
 var HomeComponent = (function () {
+    //userLogged: boolean;
     // searchTerm: string = '';
     // searchControl: FormControl;
     // items: any;
@@ -53,7 +54,8 @@ var HomeComponent = (function () {
         // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
         //  this.setFilteredItems();
         // });
-        //this.loadUserProfile();
+        this.loadUserProfile();
+        console.log(this.userLogged);
     };
     // ngOnChanges(changes) {
     // // Called right after our bindings have been checked but only
@@ -73,12 +75,11 @@ var HomeComponent = (function () {
         var _this = this;
         this.firebaseAccount = this.authService.getLoggedInUser();
         if (this.firebaseAccount) {
-            this.userDataLoaded = false;
+            //this.userDataLoaded = false;
             this.getUserName().then(function (snapshot) {
                 _this.userName = snapshot.val();
                 console.log(_this.userName);
             });
-            this.userDataLoaded = true;
         }
     };
     // setFilteredItems() {
@@ -110,6 +111,17 @@ var HomeComponent = (function () {
         // if ( this.queryText.trim().length == 0) {
         //     this.services = [];
         // }
+    };
+    HomeComponent.prototype.onChanged = function (toggle) {
+        console.log(toggle);
+        if (toggle == true) {
+            this.loadUserProfile();
+            this.userLogged = true;
+        }
+        else {
+            this.userName = 'Гость';
+            this.userLogged = false;
+        }
     };
     HomeComponent = __decorate([
         core_1.Component({

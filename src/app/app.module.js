@@ -34,6 +34,8 @@ var app_routes_1 = require('./app.routes');
 var search_bar_component_1 = require('./search/search-bar.component');
 var company_component_1 = require('./company/company.component');
 var login_component_1 = require('./login/login.component');
+var order_component_1 = require('./order/order.component');
+var order_details_component_1 = require('./order-details/order-details.component');
 var data_service_1 = require('./shared/services/data.service');
 var config_service_1 = require('./shared/utils/config.service');
 var items_service_1 = require('./shared/utils/items.service');
@@ -72,7 +74,9 @@ var AppModule = (function () {
                 user_list_component_1.UserListComponent,
                 search_bar_component_1.SearchBarComponent,
                 company_component_1.CompanyComponent,
-                login_component_1.LoginComponent
+                login_component_1.LoginComponent,
+                order_component_1.OrderComponent,
+                order_details_component_1.OrderDetailsComponent
             ],
             providers: [
                 config_service_1.ConfigService,

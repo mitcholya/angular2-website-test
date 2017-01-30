@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ISchedule, IScheduleDetails, IUser, IService } from '../interfaces';
+import { ISchedule, IScheduleDetails, IUser, IService, IOrder } from '../interfaces';
 import  { ItemsService } from './items.service'
 
 @Injectable()
@@ -50,5 +50,23 @@ export class MappingService {
         return services;    
     }
 
+    getOrders(snapshot: any): Array<IOrder> {
+        let orders: Array<IOrder> = [];
+        if (snapshot.val() == null)
+            return orders;
+
+        let list = snapshot.val();
+
+        Object.keys(snapshot.val()).map((key: any) => {
+            let order: any = list[key];
+            orders.push({
+                oid: key,
+                title: order.title,
+                description: order.description
+            });
+        });
+        console.log(orders);
+        return orders;    
+    }
 
 }

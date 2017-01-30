@@ -1,5 +1,16 @@
 <div>
     <div>
-        <button (click)="addOrder()">Добавить услугу<button>
-    </div>    
+        <button (click)="addOrder()">Добавить услугу</button>
+    </div> 
+    <div *ngFor="let order of orders" style="border: 1px solid blue">
+        <div>
+            <h4><a [routerLink]="['/order-details']">{{order.title}}</a></h4>
+        </div>
+        <div>
+            {{order.description}}<div *ngIf="userLogged" style="color: blue"> Телефон: 1111111</div>
+        </div>        
+    </div>
+    <div>
+        <button (click)="showOrders()">Показать заявки</button>
+    </div>       
 </div>

@@ -98,7 +98,7 @@
             <search-bar></search-bar>
             </div>
             <!--<div *ngIf="userData.uid">Ваше uid: {{userData.uid}}</div>-->
-            <!--<div>Ваше имя пользователя: {{userName}}</div>-->
+            <div>Ваше имя пользователя: {{userName}}</div>
             <!--<pre class="card card-block card-header">Model: {{customSelected | json}}</pre>
             <input [(ngModel)]="customSelected"
             [typeahead]="statesComplex"
@@ -116,13 +116,14 @@
             </div>-->
 
         </div>
-        <login></login>
+        <login  (onChanged)="onChanged($event)"></login>
+        <!--<input type="text" [(ngModel)]="userLogged" />-->
         <div class="row text-center">
             <div class="col-xs-12">
 
             </div>
         </div>    
-    </div>
+    </div>   
     <!-- /.row -->
     <!-- Page Features -->
     <!--<div class="row text-center">
@@ -189,6 +190,11 @@
     </div>-->
     <!-- /.row -->
     <hr>
+    <div>
+        <order [userLogged]="userLogged"></order>
+    </div> 
+    <hr>
+
     <!-- Footer -->
     <!--<footer>
         <div class="row">

@@ -27,7 +27,9 @@ import { routing } from './app.routes';
 import { SearchBarComponent } from './search/search-bar.component';
 import { CompanyComponent } from './company/company.component';
 import { LoginComponent } from './login/login.component';
-
+import { OrderComponent } from './order/order.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+  
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';
 import { ItemsService } from './shared/utils/items.service';
@@ -63,7 +65,9 @@ import { AuthService } from './shared/services/auth.service';
         UserListComponent,
         SearchBarComponent,
         CompanyComponent,
-        LoginComponent
+        LoginComponent,
+        OrderComponent,
+        OrderDetailsComponent
     ],
     providers: [
         ConfigService,

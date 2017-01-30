@@ -35,9 +35,11 @@ declare let componentHandler: any;
 })
 export class HomeComponent implements OnInit {
 
+    userLogged: boolean;
     firebaseAccount: any = {};
     userName:any = '';
     userDataLoaded: boolean = false;
+    //userLogged: boolean;
 
     // searchTerm: string = '';
     // searchControl: FormControl;
@@ -86,7 +88,8 @@ export class HomeComponent implements OnInit {
         //  this.setFilteredItems();
  
         // });
-        //this.loadUserProfile();
+        this.loadUserProfile();
+        console.log(this.userLogged);
 
     }
 
@@ -109,14 +112,14 @@ export class HomeComponent implements OnInit {
     loadUserProfile() {
         this.firebaseAccount = this.authService.getLoggedInUser();
         if (this.firebaseAccount) {
-        this.userDataLoaded = false;
+        //this.userDataLoaded = false;
 
         this.getUserName().then((snapshot) => {
             this.userName = snapshot.val();
             console.log(this.userName);
         })
 
-        this.userDataLoaded = true;
+        //this.userDataLoaded = true;
         }
 
     }
@@ -163,6 +166,19 @@ export class HomeComponent implements OnInit {
         // if ( this.queryText.trim().length == 0) {
         //     this.services = [];
         // }
+    }
+
+    onChanged(toggle) {
+        console.log(toggle);
+        if (toggle == true) {
+            this.loadUserProfile();
+            this.userLogged = true;
+        }
+        else {
+            this.userName = 'Гость';
+            this.userLogged = false;
+        }
+        
     }
 
 }

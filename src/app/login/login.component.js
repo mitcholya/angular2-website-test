@@ -18,6 +18,8 @@ var LoginComponent = (function () {
         this.dataService = dataService;
         this.authService = authService;
         this.userName = '';
+        this.userLogged = false;
+        this.onChanged = new core_1.EventEmitter();
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginFirebaseAccountForm = this.fb.group({
@@ -26,6 +28,7 @@ var LoginComponent = (function () {
         });
         this.email = this.loginFirebaseAccountForm.controls['email'];
         this.password = this.loginFirebaseAccountForm.controls['password'];
+        console.log(this.userLogged);
     };
     LoginComponent.prototype.onSubmit = function (signInForm) {
         var _this = this;
@@ -46,7 +49,9 @@ var LoginComponent = (function () {
                 // self.nav.setRoot(TabsPage);
                 console.log('Привет');
                 //this.userName = 'Привет!!!';
-                _this.getUserName();
+                //this.getUserName();
+                _this.change(true);
+                _this.userLogged = true;
             }).catch(function (error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -64,18 +69,31 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.register = function () {
         // this.nav.push(SignupPage);
+        console.log(this.userLogged);
     };
     LoginComponent.prototype.signOut = function () {
         this.userName = '';
+        this.change(false);
         return this.authService.signOut();
     };
-    LoginComponent.prototype.getUserName = function () {
-        var _this = this;
-        var uid = this.authService.getLoggedInUser().uid;
-        this.dataService.getUsername(uid).then(function (snapshot) {
-            _this.userName = snapshot.val();
-        });
+    // getUserName() {
+    //     let uid = this.authService.getLoggedInUser().uid;
+    //     this.dataService.getUsername(uid).then((snapshot) => {
+    //         this.userName = snapshot.val();
+    //         console.log(snapshot.val());
+    //     });
+    // }
+    LoginComponent.prototype.change = function (toggle) {
+        this.onChanged.emit(toggle);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], LoginComponent.prototype, "userLogged", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], LoginComponent.prototype, "onChanged", void 0);
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

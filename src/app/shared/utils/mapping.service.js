@@ -50,6 +50,22 @@ var MappingService = (function () {
         });
         return services;
     };
+    MappingService.prototype.getOrders = function (snapshot) {
+        var orders = [];
+        if (snapshot.val() == null)
+            return orders;
+        var list = snapshot.val();
+        Object.keys(snapshot.val()).map(function (key) {
+            var order = list[key];
+            orders.push({
+                oid: key,
+                title: order.title,
+                description: order.description
+            });
+        });
+        console.log(orders);
+        return orders;
+    };
     MappingService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [items_service_1.ItemsService])

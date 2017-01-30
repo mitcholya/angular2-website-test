@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from '@angular/forms';
 
 // import { SignupPage } from '../signup/signup';
@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
     email: AbstractControl;
     password: AbstractControl;
     userName: string = '';
+    @Input() userLogged: boolean = false;
+    @Output() onChanged = new EventEmitter<boolean>(); 
 
     constructor(
         public fb: FormBuilder,
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
 
         this.email = this.loginFirebaseAccountForm.controls['email'];
         this.password = this.loginFirebaseAccountForm.controls['password'];
+        console.log(this.userLogged);
     }
 
     onSubmit(signInForm: any): void {
@@ -56,7 +59,9 @@ export class LoginComponent implements OnInit {
                     // self.nav.setRoot(TabsPage);
                     console.log('Привет');
                     //this.userName = 'Привет!!!';
-                    this.getUserName();
+                    //this.getUserName();
+                    this.change(true);
+                    this.userLogged = true;
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -75,17 +80,23 @@ export class LoginComponent implements OnInit {
 
     register() {
         // this.nav.push(SignupPage);
+        console.log(this.userLogged);
     }
 
     signOut() {
         this.userName = '';
+        this.change(false);
         return this.authService.signOut();
     }
 
-    getUserName() {
-        let uid = this.authService.getLoggedInUser().uid;
-        this.dataService.getUsername(uid).then((snapshot) => {
-            this.userName = snapshot.val();
-        });
+    // getUserName() {
+    //     let uid = this.authService.getLoggedInUser().uid;
+    //     this.dataService.getUsername(uid).then((snapshot) => {
+    //         this.userName = snapshot.val();
+    //         console.log(snapshot.val());
+    //     });
+    // }
+    change(toggle) {
+        this.onChanged.emit(toggle);
     }
 }

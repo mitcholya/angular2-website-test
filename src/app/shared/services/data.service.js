@@ -61,6 +61,9 @@ var DataService = (function () {
     DataService.prototype.getServices = function () {
         return this.serviceRef.once('value');
     };
+    DataService.prototype.getOrders = function () {
+        return this.ordersRef.once('value');
+    };
     DataService.prototype.getStorageRef = function () {
         return this.storageRef;
     };
