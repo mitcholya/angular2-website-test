@@ -87,6 +87,14 @@ export class DataService {
         return this.usersRef.child(userUid + '/username').once('value');
     }
 
+    addOrderToFavorites(userKey: string, orderKey: string) {
+        return this.usersRef.child(userKey + '/favorites/' + orderKey).set(true);
+    }
+
+    getFavoriteOrders(user: string) {
+        return this.usersRef.child(user + '/favorites/').once('value');
+    }
+
     getUsers(): Observable<IUser[]> {
         return this.http.get(this._baseUrl + 'users')
             .map((res: Response) => {

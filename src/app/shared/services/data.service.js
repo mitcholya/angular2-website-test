@@ -73,6 +73,12 @@ var DataService = (function () {
     DataService.prototype.getUsername = function (userUid) {
         return this.usersRef.child(userUid + '/username').once('value');
     };
+    DataService.prototype.addOrderToFavorites = function (userKey, orderKey) {
+        return this.usersRef.child(userKey + '/favorites/' + orderKey).set(true);
+    };
+    DataService.prototype.getFavoriteOrders = function (user) {
+        return this.usersRef.child(user + '/favorites/').once('value');
+    };
     DataService.prototype.getUsers = function () {
         return this.http.get(this._baseUrl + 'users')
             .map(function (res) {

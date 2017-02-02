@@ -9,9 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var data_service_1 = require('../shared/services/data.service');
+var auth_service_1 = require('../shared/services/auth.service');
 var OrderDetailsComponent = (function () {
-    function OrderDetailsComponent() {
+    function OrderDetailsComponent(route, dataService, authService) {
+        this.route = route;
+        this.dataService = dataService;
+        this.authService = authService;
     }
+    OrderDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.route.params.subscribe(function (params) {
+            console.log(params);
+            _this.order = params;
+        });
+    };
+    OrderDetailsComponent.prototype.addToFavorites = function () {
+        var uid = this.authService.getLoggedInUser().uid;
+        this.dataService.addOrderToFavorites(uid, this.order.oid);
+    };
     OrderDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -19,7 +36,7 @@ var OrderDetailsComponent = (function () {
             templateUrl: 'order-details.component.html',
             styleUrls: ['order-details.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, data_service_1.DataService, auth_service_1.AuthService])
     ], OrderDetailsComponent);
     return OrderDetailsComponent;
 }());
