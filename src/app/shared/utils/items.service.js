@@ -60,6 +60,9 @@ var ItemsService = (function () {
     ItemsService.prototype.reversedItems = function (array) {
         return _.reverse(array);
     };
+    ItemsService.prototype.getKeys = function (object) {
+        return _.keysIn(object);
+    };
     ItemsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

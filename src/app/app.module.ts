@@ -29,6 +29,7 @@ import { CompanyComponent } from './company/company.component';
 import { LoginComponent } from './login/login.component';
 import { OrderComponent } from './order/order.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { ProfileComponent } from './profile/profile.component';
   
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';
@@ -67,7 +68,8 @@ import { AuthService } from './shared/services/auth.service';
         CompanyComponent,
         LoginComponent,
         OrderComponent,
-        OrderDetailsComponent
+        OrderDetailsComponent,
+        ProfileComponent
     ],
     providers: [
         ConfigService,

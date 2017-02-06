@@ -56,6 +56,7 @@ var HomeComponent = (function () {
         // });
         this.loadUserProfile();
         console.log(this.userLogged);
+        this.getUser();
     };
     // ngOnChanges(changes) {
     // // Called right after our bindings have been checked but only
@@ -117,10 +118,24 @@ var HomeComponent = (function () {
         if (toggle == true) {
             this.loadUserProfile();
             this.userLogged = true;
+            this.userDataLoaded = true;
         }
         else {
             this.userName = 'Гость';
             this.userLogged = false;
+            this.userDataLoaded = false;
+        }
+    };
+    HomeComponent.prototype.getUser = function () {
+        var _this = this;
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        if (this.firebaseAccount) {
+            var uid = this.authService.getLoggedInUser().uid;
+            this.dataService.getUser(uid).then(function (snapshot) {
+                _this.user = snapshot.val();
+                console.log(_this.user);
+                _this.userDataLoaded = true;
+            });
         }
     };
     HomeComponent = __decorate([

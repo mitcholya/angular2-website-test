@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     userLogged: boolean;
     firebaseAccount: any = {};
     userName:any = '';
+    user: any;
     userDataLoaded: boolean = false;
     //userLogged: boolean;
 
@@ -90,6 +91,7 @@ export class HomeComponent implements OnInit {
         // });
         this.loadUserProfile();
         console.log(this.userLogged);
+        this.getUser();
 
     }
 
@@ -173,10 +175,28 @@ export class HomeComponent implements OnInit {
         if (toggle == true) {
             this.loadUserProfile();
             this.userLogged = true;
+            this.userDataLoaded = true;
         }
         else {
             this.userName = 'Гость';
             this.userLogged = false;
+            this.userDataLoaded = false;
+        }
+        
+    }
+
+    getUser() {
+        this.firebaseAccount = this.authService.getLoggedInUser();
+        if (this.firebaseAccount) {
+            
+        
+        let uid = this.authService.getLoggedInUser().uid;
+
+         this.dataService.getUser(uid).then((snapshot) => {
+            this.user = snapshot.val();
+            console.log(this.user);
+            this.userDataLoaded = true;
+        });
         }
         
     }

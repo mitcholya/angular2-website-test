@@ -61,4 +61,8 @@ export class ItemsService {
     reversedItems<T>(array: T[]): T[] {
         return <T[]>_.reverse(array);
     }
+
+    getKeys(object): string[] {
+        return _.keysIn(object);
+    }
 }
