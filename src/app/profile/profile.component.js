@@ -13,12 +13,14 @@ var router_1 = require('@angular/router');
 var auth_service_1 = require('../shared/services/auth.service');
 var data_service_1 = require('../shared/services/data.service');
 var items_service_1 = require('../shared/utils/items.service');
+var mapping_service_1 = require('../shared/utils/mapping.service');
 var ProfileComponent = (function () {
-    function ProfileComponent(route, authService, dataService, itemsService) {
+    function ProfileComponent(route, authService, dataService, itemsService, mappingService) {
         this.route = route;
         this.authService = authService;
         this.dataService = dataService;
         this.itemsService = itemsService;
+        this.mappingService = mappingService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -27,9 +29,11 @@ var ProfileComponent = (function () {
             _this.user = params;
             console.log(_this.user.favorites);
         });
+        this.loadFavorites();
     };
     ProfileComponent.prototype.loadFavorites = function () {
         var _this = this;
+        this.favoteOrderKeys = [];
         var uid = this.authService.getLoggedInUser().uid;
         this.dataService.getFavoriteOrders(uid)
             .then(function (snapshot) {
@@ -37,6 +41,18 @@ var ProfileComponent = (function () {
             _this.itemsService.getKeys(favoritesOrders)
                 .forEach(function (orderKey) {
                 _this.favoteOrderKeys.push(orderKey);
+            });
+            _this.getOreders();
+        });
+    };
+    ProfileComponent.prototype.getOreders = function () {
+        var _this = this;
+        this.orders = [];
+        this.favoteOrderKeys.forEach(function (key) {
+            _this.dataService.getOrdersRef().child(key).once('value').
+                then(function (snapshot) {
+                _this.orders.unshift(_this.mappingService.getOrder(snapshot.val(), key));
+                console.log(_this.orders);
             });
         });
     };
@@ -47,7 +63,7 @@ var ProfileComponent = (function () {
             templateUrl: 'profile.component.html',
             styleUrls: ['profile.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, auth_service_1.AuthService, data_service_1.DataService, items_service_1.ItemsService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, auth_service_1.AuthService, data_service_1.DataService, items_service_1.ItemsService, mapping_service_1.MappingService])
     ], ProfileComponent);
     return ProfileComponent;
 }());

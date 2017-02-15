@@ -6,6 +6,12 @@ export interface IUser {
     schedulesCreated: number;
 }
 
+export interface ICustomer {
+    cid: string;
+    customername: string;
+    
+}
+
 export interface ISchedule {
      id: number;
      title: string;

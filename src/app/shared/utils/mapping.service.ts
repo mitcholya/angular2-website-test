@@ -69,4 +69,14 @@ export class MappingService {
         return orders;    
     }
 
+    getOrder(snapshot: any, key: string): IOrder {
+        let order: IOrder = {
+            oid: key,
+            title: snapshot.title,
+            description: snapshot.description
+        }
+
+        return order;
+    }
+
 }

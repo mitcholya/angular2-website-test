@@ -29,6 +29,7 @@ var DataService = (function () {
         this.storageRef = firebase.storage().ref();
         this.usersRef = firebase.database().ref('users');
         this.ordersRef = firebase.database().ref('orders');
+        this.customersRef = firebase.database().ref('customers');
         this._baseUrl = configService.getApiURI();
     }
     DataService.prototype.getDatabaseRef = function () {
@@ -60,6 +61,9 @@ var DataService = (function () {
     };
     DataService.prototype.getServices = function () {
         return this.serviceRef.once('value');
+    };
+    DataService.prototype.getOrdersRef = function () {
+        return this.ordersRef;
     };
     DataService.prototype.getOrders = function () {
         return this.ordersRef.once('value');

@@ -66,6 +66,14 @@ var MappingService = (function () {
         console.log(orders);
         return orders;
     };
+    MappingService.prototype.getOrder = function (snapshot, key) {
+        var order = {
+            oid: key,
+            title: snapshot.title,
+            description: snapshot.description
+        };
+        return order;
+    };
     MappingService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [items_service_1.ItemsService])
