@@ -30,6 +30,10 @@ var ProfileComponent = (function () {
             console.log(_this.user.favorites);
         });
         this.loadFavorites();
+        this.getUser();
+        // this.dataService.getUser()
+        // console.log(this.mappingService.getUser())
+        //console.log();
     };
     ProfileComponent.prototype.loadFavorites = function () {
         var _this = this;
@@ -54,6 +58,27 @@ var ProfileComponent = (function () {
                 _this.orders.unshift(_this.mappingService.getOrder(snapshot.val(), key));
                 console.log(_this.orders);
             });
+        });
+    };
+    ProfileComponent.prototype.getUser = function () {
+        var _this = this;
+        var uid = this.authService.getLoggedInUser().uid;
+        this.dataService.getUser(uid)
+            .then(function (snapshot) {
+            var user = _this.mappingService.getUser(snapshot, uid);
+            console.log(user);
+        });
+    };
+    ProfileComponent.prototype.joinGroup = function () {
+        // let uid = this.authService.getLoggedInUser().uid;
+        // let groupKey = '-Kd7O6F4IBXDVNubD17x';
+        // this.dataService.addGroupToJoin(uid, groupKey);
+        var ref = this.dataService.getUserRef();
+        ref
+            .orderByChild('groupname')
+            .equalTo('worker')
+            .on('child_added', function (snapshot) {
+            console.log(snapshot.key);
         });
     };
     ProfileComponent = __decorate([

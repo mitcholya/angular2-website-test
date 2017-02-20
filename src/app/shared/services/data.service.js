@@ -30,6 +30,7 @@ var DataService = (function () {
         this.usersRef = firebase.database().ref('users');
         this.ordersRef = firebase.database().ref('orders');
         this.customersRef = firebase.database().ref('customers');
+        this.groupRef = firebase.database().ref('group');
         this._baseUrl = configService.getApiURI();
     }
     DataService.prototype.getDatabaseRef = function () {
@@ -50,11 +51,17 @@ var DataService = (function () {
     DataService.prototype.getServiceRef = function () {
         return this.serviceRef;
     };
+    DataService.prototype.getUserRef = function () {
+        return this.usersRef;
+    };
     DataService.prototype.addService = function (service) {
         return this.serviceRef.push().set(service);
     };
     DataService.prototype.addOrder = function (order) {
         return this.ordersRef.push().set(order);
+    };
+    DataService.prototype.addGroup = function (group) {
+        return this.groupRef.push().set(group);
     };
     DataService.prototype.searchService = function (service) {
         return this.serviceRef.orderByChild('service').equalTo(service).once('value');
@@ -80,8 +87,13 @@ var DataService = (function () {
     DataService.prototype.addOrderToFavorites = function (userKey, orderKey) {
         return this.usersRef.child(userKey + '/favorites/' + orderKey).set(true);
     };
+    DataService.prototype.addGroupToJoin = function (userKey, groupKey) {
+        return this.usersRef.child(userKey + '/group/' + groupKey).set(true);
+    };
     DataService.prototype.getFavoriteOrders = function (user) {
         return this.usersRef.child(user + '/favorites/').once('value');
+    };
+    DataService.prototype.getUserGroup = function (user) {
     };
     DataService.prototype.getUsers = function () {
         return this.http.get(this._baseUrl + 'users')
@@ -108,17 +120,17 @@ var DataService = (function () {
         })
             .catch(this.handleError);
     };
-    DataService.prototype.updateUser = function (user) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.put(this._baseUrl + 'users/' + user.id, JSON.stringify(user), {
-            headers: headers
-        })
-            .map(function (res) {
-            return;
-        })
-            .catch(this.handleError);
-    };
+    // updateUser(user: IUser): Observable<void> {
+    //     let headers = new Headers();
+    //     headers.append('Content-Type', 'application/json');
+    //     return this.http.put(this._baseUrl + 'users/' + user.id, JSON.stringify(user), {
+    //         headers: headers
+    //     })
+    //         .map((res: Response) => {
+    //             return;
+    //         })
+    //         .catch(this.handleError);
+    // }
     DataService.prototype.deleteUser = function (id) {
         return this.http.delete(this._baseUrl + 'users/' + id)
             .map(function (res) {

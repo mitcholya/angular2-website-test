@@ -8,6 +8,7 @@ import { ScheduleEditComponent } from './schedules/schedule-edit.component';
 import { CompanyComponent } from './company/company.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 const appRoutes: Routes = [
     { path: 'users', component: UserListComponent },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'company', component: CompanyComponent},
     { path: 'order-details', component: OrderDetailsComponent},
     { path: 'profile', component: ProfileComponent },
+    { path: 'customer-list', component: CustomerListComponent},
     { path: '', component: HomeComponent }
 ];
 

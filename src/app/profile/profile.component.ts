@@ -33,6 +33,12 @@ export class ProfileComponent implements OnInit {
             console.log(this.user.favorites);
         })
         this.loadFavorites();
+        this.getUser();
+
+        // this.dataService.getUser()
+        // console.log(this.mappingService.getUser())
+        //console.log();
+
     }
 
     loadFavorites() {
@@ -58,5 +64,33 @@ export class ProfileComponent implements OnInit {
                     console.log(this.orders);
                 });
         })
+    }
+
+    getUser() {
+        let uid = this.authService.getLoggedInUser().uid;
+        this.dataService.getUser(uid)
+            .then((snapshot) => {
+                let user = this.mappingService.getUser(snapshot, uid);
+                console.log(user);
+            })
+    }
+
+    joinGroup() {
+
+
+        // let uid = this.authService.getLoggedInUser().uid;
+        // let groupKey = '-Kd7O6F4IBXDVNubD17x';
+        // this.dataService.addGroupToJoin(uid, groupKey);
+
+        let ref = this.dataService.getUserRef();
+        ref
+        //.child('o0WPpFdpXQP89CksXvFSgJRPIXW2')
+        //.child('username')
+        //.child('group')
+        .orderByChild('groupname')
+            .equalTo('worker')
+                .on('child_added',(snapshot) => {
+                    console.log(snapshot.key);
+                })
     }
 }

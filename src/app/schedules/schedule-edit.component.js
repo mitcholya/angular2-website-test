@@ -67,20 +67,21 @@ var ScheduleEditComponent = (function () {
         });
     };
     ScheduleEditComponent.prototype.removeAttendee = function (attendee) {
-        var _this = this;
-        this.notificationService.openConfirmationDialog('Are you sure you want to remove '
-            + attendee.name + ' from this schedule?', function () {
-            _this.loadingBarService.start();
-            _this.dataService.deleteScheduleAttendee(_this.schedule.id, attendee.id)
-                .subscribe(function () {
-                _this.itemsService.removeItemFromArray(_this.schedule.attendees, attendee);
-                _this.notificationService.printSuccessMessage(attendee.name + ' will not attend the schedule.');
-                _this.loadingBarService.complete();
-            }, function (error) {
-                _this.loadingBarService.complete();
-                _this.notificationService.printErrorMessage('Failed to remove ' + attendee.name + ' ' + error);
-            });
-        });
+        // this.notificationService.openConfirmationDialog('Are you sure you want to remove '
+        //     + attendee.name + ' from this schedule?',
+        //     () => {
+        //         this.loadingBarService.start();
+        //         this.dataService.deleteScheduleAttendee(this.schedule.id, attendee.id)
+        //             .subscribe(() => {
+        //                 this.itemsService.removeItemFromArray<IUser>(this.schedule.attendees, attendee);
+        //                 this.notificationService.printSuccessMessage(attendee.name + ' will not attend the schedule.');
+        //                 this.loadingBarService.complete();
+        //             },
+        //             error => {
+        //                 this.loadingBarService.complete();
+        //                 this.notificationService.printErrorMessage('Failed to remove ' + attendee.name + ' ' + error);
+        //             });
+        //     });
     };
     ScheduleEditComponent.prototype.back = function () {
         this.router.navigate(['/schedules']);

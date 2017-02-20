@@ -138,6 +138,12 @@ var HomeComponent = (function () {
             });
         }
     };
+    HomeComponent.prototype.addGroup = function () {
+        var group = {
+            groupname: 'worker'
+        };
+        this.dataService.addGroup(group);
+    };
     HomeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

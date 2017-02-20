@@ -24,6 +24,7 @@ export class DataService {
     usersRef: any = firebase.database().ref('users');
     ordersRef:any = firebase.database().ref('orders');
     customersRef: any = firebase.database().ref('customers');
+    groupRef: any = firebase.database().ref('group');
     
 
     constructor(private http: Http,
@@ -55,6 +56,9 @@ export class DataService {
     getServiceRef() {
         return this.serviceRef;
     }
+    getUserRef() {
+        return this.usersRef;
+    }
 
     addService(service) {
         return this.serviceRef.push().set(service);
@@ -62,6 +66,10 @@ export class DataService {
 
     addOrder(order) {
         return this.ordersRef.push().set(order);
+    }
+
+    addGroup(group) {
+        return this.groupRef.push().set(group);
     }
 
     searchService(service) {
@@ -96,8 +104,16 @@ export class DataService {
         return this.usersRef.child(userKey + '/favorites/' + orderKey).set(true);
     }
 
+    addGroupToJoin(userKey: string, groupKey: string) {
+        return this.usersRef.child(userKey + '/group/' + groupKey).set(true);
+    }
+
     getFavoriteOrders(user: string) {
         return this.usersRef.child(user + '/favorites/').once('value');
+    }
+
+    getUserGroup(user) {
+
     }
 
     getUsers(): Observable<IUser[]> {
@@ -130,19 +146,19 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    updateUser(user: IUser): Observable<void> {
+    // updateUser(user: IUser): Observable<void> {
 
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+    //     let headers = new Headers();
+    //     headers.append('Content-Type', 'application/json');
 
-        return this.http.put(this._baseUrl + 'users/' + user.id, JSON.stringify(user), {
-            headers: headers
-        })
-            .map((res: Response) => {
-                return;
-            })
-            .catch(this.handleError);
-    }
+    //     return this.http.put(this._baseUrl + 'users/' + user.id, JSON.stringify(user), {
+    //         headers: headers
+    //     })
+    //         .map((res: Response) => {
+    //             return;
+    //         })
+    //         .catch(this.handleError);
+    // }
 
     deleteUser(id: number): Observable<void> {
         return this.http.delete(this._baseUrl + 'users/' + id)

@@ -29,29 +29,29 @@ var UserListComponent = (function () {
         });
     };
     UserListComponent.prototype.removeUser = function (user) {
-        var _user = this.itemsService.getSerialized(user.value);
-        this.itemsService.removeItemFromArray(this.users, _user);
-        // inform user
-        this.notificationService.printSuccessMessage(_user.name + ' has been removed');
+        // var _user: IUser = this.itemsService.getSerialized<IUser>(user.value);
+        // this.itemsService.removeItemFromArray<IUser>(this.users, _user);
+        // // inform user
+        // this.notificationService.printSuccessMessage(_user.name + ' has been removed');
     };
     UserListComponent.prototype.userCreated = function (user) {
-        var _user = this.itemsService.getSerialized(user.value);
-        this.addingUser = false;
-        // inform user
-        this.notificationService.printSuccessMessage(_user.name + ' has been created');
-        console.log(_user.id);
-        this.itemsService.setItem(this.users, function (u) { return u.id == -1; }, _user);
-        // todo fix user with id:-1
+        // var _user: IUser = this.itemsService.getSerialized<IUser>(user.value);
+        // this.addingUser = false;
+        // // inform user
+        // this.notificationService.printSuccessMessage(_user.name + ' has been created');
+        // console.log(_user.id);
+        // this.itemsService.setItem<IUser>(this.users, (u) => u.id == -1, _user);
+        // // todo fix user with id:-1
     };
     UserListComponent.prototype.addUser = function () {
-        this.addingUser = true;
-        var newUser = { id: -1, name: '', avatar: 'avatar_05.png', profession: '', schedulesCreated: 0 };
-        this.itemsService.addItemToStart(this.users, newUser);
-        //this.users.splice(0, 0, newUser);
+        // this.addingUser = true;
+        // var newUser = { id: -1, name: '', avatar: 'avatar_05.png', profession: '', schedulesCreated: 0 };
+        // this.itemsService.addItemToStart<IUser>(this.users, newUser);
+        // //this.users.splice(0, 0, newUser);
     };
     UserListComponent.prototype.cancelAddUser = function () {
-        this.addingUser = false;
-        this.itemsService.removeItems(this.users, function (x) { return x.id < 0; });
+        // this.addingUser = false;
+        // this.itemsService.removeItems<IUser>(this.users, x => x.id < 0);
     };
     UserListComponent = __decorate([
         core_1.Component({

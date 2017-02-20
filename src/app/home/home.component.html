@@ -92,11 +92,15 @@
     <a *ngIf="userDataLoaded" [routerLink]="['/profile', user]">Мой профиль</a>
 
     <hr>
+    <hr>
+    <a [routerLink]="['/customer-list']">Заказчики</a>
+    <hr>
     <!-- Title -->
     <div class="row tex-center">
         <div class="col-lg-12">
             <h3>Latest Features</h3>
             <button class="btn btn-primary" (click)="addService()">Добавить Услугу</button>
+            <button class="btn btn-primary" (click)="addGroup()">Добавить группу</button>
             <div>
             <search-bar></search-bar>
             </div>

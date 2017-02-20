@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ISchedule, IScheduleDetails, IUser, IService, IOrder } from '../interfaces';
+import { ISchedule, IScheduleDetails, IUser, IService, IOrder, IGroup } from '../interfaces';
 import  { ItemsService } from './items.service'
 
 @Injectable()
@@ -79,4 +79,31 @@ export class MappingService {
         return order;
     }
 
+    getGroups(snapshot: any): Array<IGroup> {
+        let groups: Array<IGroup> = [];
+
+        if (snapshot.val() == null)
+            return groups;
+
+            let list = snapshot.val();
+
+            Object.keys(snapshot.val()).map((key: any) => {
+                let group: any = list[key];
+                groups.push({
+                    gid: key,
+                    groupname: group.groupname
+                });
+            });
+            return groups;    
+    }
+
+    getUser(snapshot: any, key: string): IUser {
+        let user: IUser = {
+            uid: key,
+            group: snapshot.group,
+            favorites: snapshot.favorites
+        }
+
+        return user;
+    }
 }

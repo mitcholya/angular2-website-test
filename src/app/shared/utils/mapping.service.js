@@ -74,6 +74,28 @@ var MappingService = (function () {
         };
         return order;
     };
+    MappingService.prototype.getGroups = function (snapshot) {
+        var groups = [];
+        if (snapshot.val() == null)
+            return groups;
+        var list = snapshot.val();
+        Object.keys(snapshot.val()).map(function (key) {
+            var group = list[key];
+            groups.push({
+                gid: key,
+                groupname: group.groupname
+            });
+        });
+        return groups;
+    };
+    MappingService.prototype.getUser = function (snapshot, key) {
+        var user = {
+            uid: key,
+            group: snapshot.group,
+            favorites: snapshot.favorites
+        };
+        return user;
+    };
     MappingService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [items_service_1.ItemsService])

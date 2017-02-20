@@ -32,10 +32,10 @@ var UserCardComponent = (function () {
         this.backdrop = true;
     }
     UserCardComponent.prototype.ngOnInit = function () {
-        this.apiHost = this.configService.getApiHost();
-        this.edittedUser = this.itemsService.getSerialized(this.user);
-        if (this.user.id < 0)
-            this.editUser();
+        // this.apiHost = this.configService.getApiHost();
+        // this.edittedUser = this.itemsService.getSerialized<IUser>(this.user);
+        // if (this.user.id < 0)
+        //     this.editUser();
     };
     UserCardComponent.prototype.editUser = function () {
         this.onEdit = !this.onEdit;
@@ -59,74 +59,71 @@ var UserCardComponent = (function () {
         });
     };
     UserCardComponent.prototype.updateUser = function () {
-        var _this = this;
-        //this.slimLoader.start();
-        this.dataService.updateUser(this.edittedUser)
-            .subscribe(function () {
-            _this.user = _this.edittedUser;
-            _this.onEdit = !_this.onEdit;
-            _this.notificationService.printSuccessMessage(_this.user.name + ' has been updated');
-            //this.slimLoader.complete();
-        }, function (error) {
-            _this.notificationService.printErrorMessage('Failed to edit user');
-            _this.notificationService.printErrorMessage(error);
-            //this.slimLoader.complete();
-        });
+        // //this.slimLoader.start();
+        // this.dataService.updateUser(this.edittedUser)
+        //     .subscribe(() => {
+        //         this.user = this.edittedUser;
+        //         this.onEdit = !this.onEdit;
+        //         this.notificationService.printSuccessMessage(this.user.name + ' has been updated');
+        //         //this.slimLoader.complete();
+        //     },
+        //     error => {
+        //         this.notificationService.printErrorMessage('Failed to edit user');
+        //         this.notificationService.printErrorMessage(error);
+        //         //this.slimLoader.complete();
+        //     });
     };
     UserCardComponent.prototype.openRemoveModal = function () {
-        var _this = this;
-        this.notificationService.openConfirmationDialog('Are you sure you want to remove '
-            + this.user.name + '?', function () {
-            //this.slimLoader.start();
-            _this.dataService.deleteUser(_this.user.id)
-                .subscribe(function (res) {
-                _this.removeUser.emit({
-                    value: _this.user
-                });
-                //this.slimLoader.complete();
-                //this.slimLoader.complete();
-            }, function (error) {
-                _this.notificationService.printErrorMessage(error);
-                //this.slimLoader.complete();
-            });
-        });
+        // this.notificationService.openConfirmationDialog('Are you sure you want to remove '
+        //     + this.user.name + '?',
+        //     () => {
+        //         //this.slimLoader.start();
+        //         this.dataService.deleteUser(this.user.id)
+        //             .subscribe(
+        //             res => {
+        //                 this.removeUser.emit({
+        //                     value: this.user
+        //                 });
+        //                 //this.slimLoader.complete();
+        //                 //this.slimLoader.complete();
+        //             }, error => {
+        //                 this.notificationService.printErrorMessage(error);
+        //                 //this.slimLoader.complete();
+        //             })
+        //     });
     };
     UserCardComponent.prototype.viewSchedules = function (user) {
-        var _this = this;
-        console.log(user);
-        this.dataService.getUserSchedules(this.edittedUser.id)
-            .subscribe(function (schedules) {
-            _this.userSchedules = schedules;
-            console.log(_this.userSchedules);
-            _this.userSchedulesLoaded = true;
-            _this.childModal.show();
-            //this.slimLoader.complete();
-        }, function (error) {
-            //this.slimLoader.complete();
-            _this.notificationService.printErrorMessage('Failed to load users. ' + error);
-        });
+        // console.log(user);
+        // this.dataService.getUserSchedules(this.edittedUser.id)
+        //     .subscribe((schedules: ISchedule[]) => {
+        //         this.userSchedules = schedules;
+        //         console.log(this.userSchedules);
+        //         this.userSchedulesLoaded = true;
+        //         this.childModal.show();
+        //this.slimLoader.complete();
+        // },
+        // error => {
+        //this.slimLoader.complete();
+        //     this.notificationService.printErrorMessage('Failed to load users. ' + error);
+        // });
     };
     UserCardComponent.prototype.hideChildModal = function () {
         this.childModal.hide();
     };
     UserCardComponent.prototype.opened = function () {
-        var _this = this;
         //this.slimLoader.start();
-        this.dataService.getUserSchedules(this.edittedUser.id)
-            .subscribe(function (schedules) {
-            _this.userSchedules = schedules;
-            console.log(_this.userSchedules);
-            _this.userSchedulesLoaded = true;
-            //this.slimLoader.complete();
-        }, function (error) {
-            //this.slimLoader.complete();
-            _this.notificationService.printErrorMessage('Failed to load users. ' + error);
-        });
-        this.output = '(opened)';
-    };
-    UserCardComponent.prototype.isUserValid = function () {
-        return !(this.edittedUser.name.trim() === "")
-            && !(this.edittedUser.profession.trim() === "");
+        // this.dataService.getUserSchedules(this.edittedUser.id)
+        //     .subscribe((schedules: ISchedule[]) => {
+        //         this.userSchedules = schedules;
+        //         console.log(this.userSchedules);
+        //         this.userSchedulesLoaded = true;
+        //         //this.slimLoader.complete();
+        //     },
+        //     error => {
+        //         //this.slimLoader.complete();
+        //         this.notificationService.printErrorMessage('Failed to load users. ' + error);
+        //     });
+        // this.output = '(opened)';
     };
     __decorate([
         core_1.ViewChild('childModal'), 

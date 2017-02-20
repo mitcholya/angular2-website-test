@@ -201,4 +201,11 @@ export class HomeComponent implements OnInit {
         
     }
 
+    addGroup() {
+        let group = {
+            groupname: 'worker'
+        }
+        this.dataService.addGroup(group);
+    }
+
 }

@@ -80,21 +80,21 @@ export class ScheduleEditComponent implements OnInit {
     }
 
     removeAttendee(attendee: IUser) {
-        this.notificationService.openConfirmationDialog('Are you sure you want to remove '
-            + attendee.name + ' from this schedule?',
-            () => {
-                this.loadingBarService.start();
-                this.dataService.deleteScheduleAttendee(this.schedule.id, attendee.id)
-                    .subscribe(() => {
-                        this.itemsService.removeItemFromArray<IUser>(this.schedule.attendees, attendee);
-                        this.notificationService.printSuccessMessage(attendee.name + ' will not attend the schedule.');
-                        this.loadingBarService.complete();
-                    },
-                    error => {
-                        this.loadingBarService.complete();
-                        this.notificationService.printErrorMessage('Failed to remove ' + attendee.name + ' ' + error);
-                    });
-            });
+        // this.notificationService.openConfirmationDialog('Are you sure you want to remove '
+        //     + attendee.name + ' from this schedule?',
+        //     () => {
+        //         this.loadingBarService.start();
+        //         this.dataService.deleteScheduleAttendee(this.schedule.id, attendee.id)
+        //             .subscribe(() => {
+        //                 this.itemsService.removeItemFromArray<IUser>(this.schedule.attendees, attendee);
+        //                 this.notificationService.printSuccessMessage(attendee.name + ' will not attend the schedule.');
+        //                 this.loadingBarService.complete();
+        //             },
+        //             error => {
+        //                 this.loadingBarService.complete();
+        //                 this.notificationService.printErrorMessage('Failed to remove ' + attendee.name + ' ' + error);
+        //             });
+        //     });
     }
 
     back() {

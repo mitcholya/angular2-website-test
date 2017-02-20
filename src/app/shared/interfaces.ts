@@ -1,9 +1,7 @@
 export interface IUser {
-    id: number;
-    name: string;
-    avatar: string;
-    profession: string;
-    schedulesCreated: number;
+    uid: string;
+    group: IGroup[];
+    favorites: IOrder[];
 }
 
 export interface ICustomer {
@@ -81,4 +79,9 @@ export interface IOrder {
 export interface UserCredentials {
     email: string;
     password: string;
+}
+
+export interface IGroup {
+    gid: string;
+    groupname: string;
 }

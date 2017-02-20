@@ -66,10 +66,10 @@ export class UserCardComponent implements OnInit {
         private configService: ConfigService) { }
 
     ngOnInit() {
-        this.apiHost = this.configService.getApiHost();
-        this.edittedUser = this.itemsService.getSerialized<IUser>(this.user);
-        if (this.user.id < 0)
-            this.editUser();
+        // this.apiHost = this.configService.getApiHost();
+        // this.edittedUser = this.itemsService.getSerialized<IUser>(this.user);
+        // if (this.user.id < 0)
+        //     this.editUser();
     }
 
     editUser() {
@@ -97,55 +97,55 @@ export class UserCardComponent implements OnInit {
     }
 
     updateUser() {
-        //this.slimLoader.start();
-        this.dataService.updateUser(this.edittedUser)
-            .subscribe(() => {
-                this.user = this.edittedUser;
-                this.onEdit = !this.onEdit;
-                this.notificationService.printSuccessMessage(this.user.name + ' has been updated');
-                //this.slimLoader.complete();
-            },
-            error => {
-                this.notificationService.printErrorMessage('Failed to edit user');
-                this.notificationService.printErrorMessage(error);
-                //this.slimLoader.complete();
-            });
+        // //this.slimLoader.start();
+        // this.dataService.updateUser(this.edittedUser)
+        //     .subscribe(() => {
+        //         this.user = this.edittedUser;
+        //         this.onEdit = !this.onEdit;
+        //         this.notificationService.printSuccessMessage(this.user.name + ' has been updated');
+        //         //this.slimLoader.complete();
+        //     },
+        //     error => {
+        //         this.notificationService.printErrorMessage('Failed to edit user');
+        //         this.notificationService.printErrorMessage(error);
+        //         //this.slimLoader.complete();
+        //     });
     }
 
     openRemoveModal() {
-        this.notificationService.openConfirmationDialog('Are you sure you want to remove '
-            + this.user.name + '?',
-            () => {
-                //this.slimLoader.start();
-                this.dataService.deleteUser(this.user.id)
-                    .subscribe(
-                    res => {
-                        this.removeUser.emit({
-                            value: this.user
-                        });
-                        //this.slimLoader.complete();
-                        //this.slimLoader.complete();
-                    }, error => {
-                        this.notificationService.printErrorMessage(error);
-                        //this.slimLoader.complete();
-                    })
-            });
+        // this.notificationService.openConfirmationDialog('Are you sure you want to remove '
+        //     + this.user.name + '?',
+        //     () => {
+        //         //this.slimLoader.start();
+        //         this.dataService.deleteUser(this.user.id)
+        //             .subscribe(
+        //             res => {
+        //                 this.removeUser.emit({
+        //                     value: this.user
+        //                 });
+        //                 //this.slimLoader.complete();
+        //                 //this.slimLoader.complete();
+        //             }, error => {
+        //                 this.notificationService.printErrorMessage(error);
+        //                 //this.slimLoader.complete();
+        //             })
+        //     });
     }
 
     viewSchedules(user: IUser) {
-        console.log(user);
-        this.dataService.getUserSchedules(this.edittedUser.id)
-            .subscribe((schedules: ISchedule[]) => {
-                this.userSchedules = schedules;
-                console.log(this.userSchedules);
-                this.userSchedulesLoaded = true;
-                this.childModal.show();
+        // console.log(user);
+        // this.dataService.getUserSchedules(this.edittedUser.id)
+        //     .subscribe((schedules: ISchedule[]) => {
+        //         this.userSchedules = schedules;
+        //         console.log(this.userSchedules);
+        //         this.userSchedulesLoaded = true;
+        //         this.childModal.show();
                 //this.slimLoader.complete();
-            },
-            error => {
+            // },
+            // error => {
                 //this.slimLoader.complete();
-                this.notificationService.printErrorMessage('Failed to load users. ' + error);
-            });
+            //     this.notificationService.printErrorMessage('Failed to load users. ' + error);
+            // });
         
     }
 
@@ -155,23 +155,23 @@ export class UserCardComponent implements OnInit {
 
     opened() {
         //this.slimLoader.start();
-        this.dataService.getUserSchedules(this.edittedUser.id)
-            .subscribe((schedules: ISchedule[]) => {
-                this.userSchedules = schedules;
-                console.log(this.userSchedules);
-                this.userSchedulesLoaded = true;
-                //this.slimLoader.complete();
-            },
-            error => {
-                //this.slimLoader.complete();
-                this.notificationService.printErrorMessage('Failed to load users. ' + error);
-            });
-        this.output = '(opened)';
+        // this.dataService.getUserSchedules(this.edittedUser.id)
+        //     .subscribe((schedules: ISchedule[]) => {
+        //         this.userSchedules = schedules;
+        //         console.log(this.userSchedules);
+        //         this.userSchedulesLoaded = true;
+        //         //this.slimLoader.complete();
+        //     },
+        //     error => {
+        //         //this.slimLoader.complete();
+        //         this.notificationService.printErrorMessage('Failed to load users. ' + error);
+        //     });
+        // this.output = '(opened)';
     }
 
-    isUserValid(): boolean {
-        return !(this.edittedUser.name.trim() === "")
-            && !(this.edittedUser.profession.trim() === "");
-    }
+    // isUserValid(): boolean {
+    //     return !(this.edittedUser.name.trim() === "")
+    //         && !(this.edittedUser.profession.trim() === "");
+    // }
 
 }
