@@ -100,8 +100,9 @@ export class MappingService {
     getUser(snapshot: any, key: string): IUser {
         let user: IUser = {
             uid: key,
-            group: snapshot.group,
-            favorites: snapshot.favorites
+            groupname: snapshot.groupname,
+            favorites: snapshot.favorites == undefined ? [] : this.itemsService.getKeys(snapshot.favorites),
+            username: snapshot.username
         }
 
         return user;

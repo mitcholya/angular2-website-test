@@ -1,7 +1,8 @@
 export interface IUser {
     uid: string;
-    group: IGroup[];
-    favorites: IOrder[];
+    groupname: string;
+    favorites: string[];
+    username: string
 }
 
 export interface ICustomer {

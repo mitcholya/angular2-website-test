@@ -21,7 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
 import { ScheduleEditComponent } from './schedules/schedule-edit.component';
 import { ScheduleListComponent } from './schedules/schedule-list.component';
-import { UserCardComponent } from './users/user-card.component';
+//import { UserCardComponent } from './users/user-card.component';
 import { UserListComponent } from './users/user-list.component';
 import { routing } from './app.routes';
 import { SearchBarComponent } from './search/search-bar.component';
@@ -31,6 +31,7 @@ import { OrderComponent } from './order/order.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { UserCardComponent } from './customer-list/user-card.component';
   
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';

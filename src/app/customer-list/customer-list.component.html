@@ -1,1 +1,8 @@
 <h1>Заказчики: </h1>
+<div *ngFor="let customer of customers" style="border: 1px solid saddlebrown">
+    <div>{{customer.username}}</div>
+    <div *ngFor="let favor of customer.favorites">
+        <div>{{favor}}</div>
+        <user-card [item]="favor"></user-card>
+    </div>
+</div>

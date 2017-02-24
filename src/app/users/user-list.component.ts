@@ -4,7 +4,7 @@ import { DataService } from '../shared/services/data.service';
 import { ItemsService } from '../shared/utils/items.service';
 import { NotificationService } from '../shared/utils/notification.service';
 import { IUser } from '../shared/interfaces';
-import { UserCardComponent } from './user-card.component';
+//import { UserCardComponent } from './user-card.component';
 
 @Component({
     moduleId: module.id,

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var data_service_1 = require('../shared/services/data.service');
 var items_service_1 = require('../shared/utils/items.service');
 var notification_service_1 = require('../shared/utils/notification.service');
+//import { UserCardComponent } from './user-card.component';
 var UserListComponent = (function () {
     function UserListComponent(dataService, itemsService, notificationService) {
         this.dataService = dataService;

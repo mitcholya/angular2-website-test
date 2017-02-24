@@ -91,8 +91,9 @@ var MappingService = (function () {
     MappingService.prototype.getUser = function (snapshot, key) {
         var user = {
             uid: key,
-            group: snapshot.group,
-            favorites: snapshot.favorites
+            groupname: snapshot.groupname,
+            favorites: snapshot.favorites == undefined ? [] : this.itemsService.getKeys(snapshot.favorites),
+            username: snapshot.username
         };
         return user;
     };
