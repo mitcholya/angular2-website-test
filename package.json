@@ -17,6 +17,7 @@
     "@angular/upgrade": "2.4.0",
     "alertify": "0.3.0",
     "angular-in-memory-web-api": "0.1.17",
+    "angular2-google-maps": "^0.17.0",
     "bootstrap": "^3.3.7",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",

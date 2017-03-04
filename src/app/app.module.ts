@@ -4,6 +4,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { PaginationModule } from 'ng2-bootstrap';
 import { DatepickerModule } from 'ng2-bootstrap';
@@ -32,6 +33,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { UserCardComponent } from './customer-list/user-card.component';
+import { MapComponent } from './map/map.component';
   
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';
@@ -53,7 +55,10 @@ import { AuthService } from './shared/services/auth.service';
         PaginationModule.forRoot(),
         routing,
         TimepickerModule,
-        TypeaheadModule.forRoot()
+        TypeaheadModule.forRoot(),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBJm0chrrywvv3uvOOuMGvQmJ8NLZTYXuY'
+        })
     ],
     declarations: [
         AppComponent,
@@ -72,7 +77,8 @@ import { AuthService } from './shared/services/auth.service';
         OrderComponent,
         OrderDetailsComponent,
         ProfileComponent,
-        CustomerListComponent
+        CustomerListComponent,
+        MapComponent
     ],
     providers: [
         ConfigService,

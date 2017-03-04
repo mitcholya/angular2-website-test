@@ -3,6 +3,8 @@ import { Component, OnInit, trigger, state, style, animate, transition } from '@
 import { FormControl } from '@angular/forms';
 import { DataService } from '../shared/services/data.service';
 import { AuthService } from '../shared/services/auth.service';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { SebmGoogleMap, SebmGoogleMapMarker } from 'angular2-google-maps/core';
 
 
 
@@ -49,6 +51,8 @@ export class HomeComponent implements OnInit {
 
     //heroes: Observable<Hero[]>;
     //private searchTerms = new Subject<string>();
+
+
 
     constructor(private dataService: DataService,
                 private authService: AuthService) {

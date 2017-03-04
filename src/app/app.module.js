@@ -13,6 +13,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
+var core_2 = require('angular2-google-maps/core');
 var ng2_bootstrap_1 = require('ng2-bootstrap');
 var ng2_bootstrap_2 = require('ng2-bootstrap');
 var ng2_bootstrap_3 = require('ng2-bootstrap');
@@ -39,6 +40,7 @@ var order_details_component_1 = require('./order-details/order-details.component
 var profile_component_1 = require('./profile/profile.component');
 var customer_list_component_1 = require('./customer-list/customer-list.component');
 var user_card_component_1 = require('./customer-list/user-card.component');
+var map_component_1 = require('./map/map.component');
 var data_service_1 = require('./shared/services/data.service');
 var config_service_1 = require('./shared/utils/config.service');
 var items_service_1 = require('./shared/utils/items.service');
@@ -62,7 +64,10 @@ var AppModule = (function () {
                 ng2_bootstrap_1.PaginationModule.forRoot(),
                 app_routes_1.routing,
                 ng2_bootstrap_6.TimepickerModule,
-                ng2_bootstrap_7.TypeaheadModule.forRoot()
+                ng2_bootstrap_7.TypeaheadModule.forRoot(),
+                core_2.AgmCoreModule.forRoot({
+                    apiKey: 'AIzaSyBJm0chrrywvv3uvOOuMGvQmJ8NLZTYXuY'
+                })
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -81,7 +86,8 @@ var AppModule = (function () {
                 order_component_1.OrderComponent,
                 order_details_component_1.OrderDetailsComponent,
                 profile_component_1.ProfileComponent,
-                customer_list_component_1.CustomerListComponent
+                customer_list_component_1.CustomerListComponent,
+                map_component_1.MapComponent
             ],
             providers: [
                 config_service_1.ConfigService,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { DataService } from '../shared/services/data.service';
 import { AuthService } from '../shared/services/auth.service'; 
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @Component({
     moduleId: module.id,
@@ -13,6 +14,9 @@ export class OrderDetailsComponent implements OnInit {
 
     public sub: any;
     public order: any;
+    // public title: string = 'My first angular2-google-maps project';
+    // public lat: number = 51.678418;
+    // public lng: number = 7.809007;
 
     constructor(private route: ActivatedRoute,
                 private dataService: DataService,

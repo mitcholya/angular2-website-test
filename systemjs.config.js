@@ -29,7 +29,8 @@
             'moment': 'npm:moment/',
             'ng2-bootstrap': 'npm:ng2-bootstrap',
             'ng2-slim-loading-bar': 'npm:ng2-slim-loading-bar',
-            'symbol-observable': 'npm:symbol-observable'
+            'symbol-observable': 'npm:symbol-observable',
+            'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
