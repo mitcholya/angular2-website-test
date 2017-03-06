@@ -75,6 +75,10 @@ export interface IOrder {
     oid: string;
     title: string;
     description: string;
+    location: {
+        latitude: number,
+        longitude: number
+    }
 }
 
 export interface UserCredentials {

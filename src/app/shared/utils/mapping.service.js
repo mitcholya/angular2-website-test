@@ -55,12 +55,19 @@ var MappingService = (function () {
         if (snapshot.val() == null)
             return orders;
         var list = snapshot.val();
+        console.log(list);
         Object.keys(snapshot.val()).map(function (key) {
             var order = list[key];
+            console.log(order);
+            console.log(order.location);
             orders.push({
                 oid: key,
                 title: order.title,
-                description: order.description
+                description: order.description,
+                location: {
+                    latitude: order.location.latitude,
+                    longitude: order.location.longitude
+                }
             });
         });
         console.log(orders);
@@ -70,7 +77,11 @@ var MappingService = (function () {
         var order = {
             oid: key,
             title: snapshot.title,
-            description: snapshot.description
+            description: snapshot.description,
+            location: {
+                latitude: snapshot.location.latitude,
+                longitude: snapshot.location.longitude
+            }
         };
         return order;
     };
