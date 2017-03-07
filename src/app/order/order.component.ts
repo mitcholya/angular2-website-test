@@ -42,9 +42,10 @@ export class OrderComponent implements OnInit {
         //     })
         this.dataService.getOrders().
             then((snapshot) => {
-                console.log(snapshot);
+                console.log(snapshot.val());
                  let arr = this.mappingService.getOrders(snapshot);
                  this.orders = _.uniqBy(arr, 'oid');
+                 console.log(this.orders);
             });
 
         this.dataService.getOrders().

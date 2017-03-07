@@ -34,6 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { UserCardComponent } from './customer-list/user-card.component';
 import { MapComponent } from './map/map.component';
+import { MapOrdersComponent } from './map/map-orders.component';
   
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';
@@ -78,7 +79,8 @@ import { AuthService } from './shared/services/auth.service';
         OrderDetailsComponent,
         ProfileComponent,
         CustomerListComponent,
-        MapComponent
+        MapComponent,
+        MapOrdersComponent
     ],
     providers: [
         ConfigService,

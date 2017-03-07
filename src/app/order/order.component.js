@@ -39,9 +39,10 @@ var OrderComponent = (function () {
         //     })
         this.dataService.getOrders().
             then(function (snapshot) {
-            console.log(snapshot);
+            console.log(snapshot.val());
             var arr = _this.mappingService.getOrders(snapshot);
             _this.orders = _.uniqBy(arr, 'oid');
+            console.log(_this.orders);
         });
         this.dataService.getOrders().
             then(function (snapshot) {
