@@ -14,7 +14,7 @@ export class MapOrdersComponent implements OnInit {
     public title: string = 'My first angular2-google-maps project';
     public lat: number = 51.678418;
     public lng: number = 7.809007;
-    //public markers:any[] = [];
+    // public markers:any[] = [];
     
     constructor(private mappingService: MappingService,
                 private dataService: DataService) {

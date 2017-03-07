@@ -66,10 +66,8 @@ export class MappingService {
                 oid: key,
                 title: order.title,
                 description: order.description,
-                location: {
-                    latitude: order.location.latitude, 
-                    longitude: order.location.longitude
-                }
+                latitude: order.latitude, 
+                longitude: order.longitude                
             });
         });
         console.log(orders);
@@ -81,10 +79,8 @@ export class MappingService {
             oid: key,
             title: snapshot.title,
             description: snapshot.description,
-                location: {
-                    latitude: snapshot.location.latitude, 
-                    longitude: snapshot.location.longitude
-                }
+            latitude: snapshot.latitude, 
+            longitude: snapshot.longitude
         }
 
         return order;

@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var mapping_service_1 = require('../shared/utils/mapping.service');
 var data_service_1 = require('../shared/services/data.service');
 var MapOrdersComponent = (function () {
-    //public markers:any[] = [];
+    // public markers:any[] = [];
     function MapOrdersComponent(mappingService, dataService) {
         this.mappingService = mappingService;
         this.dataService = dataService;
