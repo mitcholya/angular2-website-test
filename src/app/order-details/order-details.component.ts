@@ -14,9 +14,11 @@ export class OrderDetailsComponent implements OnInit {
 
     public sub: any;
     public order: any;
+    public latitude: string;
+    public longitude: string;
+    public title : string;
     // public title: string = 'My first angular2-google-maps project';
-    // public lat: number = 51.678418;
-    // public lng: number = 7.809007;
+
 
     constructor(private route: ActivatedRoute,
                 private dataService: DataService,
@@ -25,9 +27,12 @@ export class OrderDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
+        this.sub = this.route.queryParams.subscribe(params => {
             console.log(params);
             this.order = params;
+            this.latitude = this.order.latitude;
+            this.longitude = this.order.longitude;
+            this.title = this.order.title;
         } )
     }
 

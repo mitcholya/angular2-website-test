@@ -14,8 +14,6 @@ var data_service_1 = require('../shared/services/data.service');
 var auth_service_1 = require('../shared/services/auth.service');
 var OrderDetailsComponent = (function () {
     // public title: string = 'My first angular2-google-maps project';
-    // public lat: number = 51.678418;
-    // public lng: number = 7.809007;
     function OrderDetailsComponent(route, dataService, authService) {
         this.route = route;
         this.dataService = dataService;
@@ -23,9 +21,12 @@ var OrderDetailsComponent = (function () {
     }
     OrderDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sub = this.route.params.subscribe(function (params) {
+        this.sub = this.route.queryParams.subscribe(function (params) {
             console.log(params);
             _this.order = params;
+            _this.latitude = _this.order.latitude;
+            _this.longitude = _this.order.longitude;
+            _this.title = _this.order.title;
         });
     };
     OrderDetailsComponent.prototype.addToFavorites = function () {

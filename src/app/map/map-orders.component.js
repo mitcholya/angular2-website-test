@@ -16,7 +16,7 @@ var MapOrdersComponent = (function () {
     function MapOrdersComponent(mappingService, dataService) {
         this.mappingService = mappingService;
         this.dataService = dataService;
-        this.title = 'My first angular2-google-maps project';
+        this.title = 'Карта заказа';
         this.lat = 51.678418;
         this.lng = 7.809007;
     }
@@ -26,7 +26,18 @@ var MapOrdersComponent = (function () {
         //         this.markers = this.mappingService.getOrders(snapshot);
         //         console.log(this.markers);
         //     })
+        console.log(this.lat, this.lng);
+        this.lat = Number(this.latitude);
+        this.lng = Number(this.longitude);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], MapOrdersComponent.prototype, "latitude", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], MapOrdersComponent.prototype, "longitude", void 0);
     MapOrdersComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

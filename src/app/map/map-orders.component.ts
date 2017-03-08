@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MappingService } from '../shared/utils/mapping.service';
 import { DataService } from '../shared/services/data.service'; 
 
@@ -11,7 +11,10 @@ import { DataService } from '../shared/services/data.service';
 
 export class MapOrdersComponent implements OnInit {
     
-    public title: string = 'My first angular2-google-maps project';
+    public title: string = 'Карта заказа';
+    @Input() latitude: number;
+    @Input() longitude: number;
+
     public lat: number = 51.678418;
     public lng: number = 7.809007;
     // public markers:any[] = [];
@@ -27,5 +30,8 @@ export class MapOrdersComponent implements OnInit {
         //         this.markers = this.mappingService.getOrders(snapshot);
         //         console.log(this.markers);
         //     })
+        console.log(this.lat, this.lng);
+         this.lat = Number(this.latitude);
+         this.lng = Number(this.longitude);
     }
 }
