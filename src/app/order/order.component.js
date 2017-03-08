@@ -31,7 +31,7 @@ var OrderComponent = (function () {
         }
         // this.authService.getLoggedInUser().
         //     subscribe(() => {
-        //         console.log('Привет!!!');
+        //         //console.log('Привет!!!');
         //     })
         // this.loadUser().
         //     subscribe(() => {
@@ -39,14 +39,14 @@ var OrderComponent = (function () {
         //     })
         this.dataService.getOrders().
             then(function (snapshot) {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
             var arr = _this.mappingService.getOrders(snapshot);
             _this.orders = _.uniqBy(arr, 'oid');
-            console.log(_this.orders);
+            //console.log(this.orders);
         });
         this.dataService.getOrders().
             then(function (snapshot) {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
         });
     };
     // loadUser(): Observable<any>  {
@@ -56,7 +56,7 @@ var OrderComponent = (function () {
         var _this = this;
         this.dataService.getOrders().
             then(function (snapshot) {
-            console.log(snapshot);
+            //console.log(snapshot);
             _this.orders = _this.mappingService.getOrders(snapshot);
         });
     };

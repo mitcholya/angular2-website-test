@@ -63,7 +63,7 @@ export class ScheduleEditComponent implements OnInit {
     }
 
     updateSchedule(editScheduleForm: NgForm) {
-        console.log(editScheduleForm.value);
+        //console.log(editScheduleForm.value);
 
         var scheduleMapped = this.mappingService.mapScheduleDetailsToSchedule(this.schedule);
 

@@ -32,12 +32,11 @@ var SearchBarComponent = (function () {
         if (this.queryText.trim().length !== 0) {
             this.services = [];
             this.data.getServices().then(function (snapshot) {
-                //console.log(snapshot.val());
+                ////console.log(snapshot.val());
                 _this.itemsService.reversedItems(_this.mappingService.getServices(snapshot)).forEach(function (service) {
                     if (service.title.toLowerCase().includes(_this.queryText.toLowerCase())) {
                         _this.services.push(service);
                         _this.services2 = _.uniqBy(_this.services, 'sid');
-                        console.log(_this.services);
                     }
                 });
             });
@@ -47,7 +46,7 @@ var SearchBarComponent = (function () {
         }
     };
     SearchBarComponent.prototype.loadDetails = function (sid) {
-        console.log(sid);
+        //console.log(sid);
         this.services2 = [];
     };
     SearchBarComponent = __decorate([

@@ -29,15 +29,15 @@ export class CustomerListComponent implements OnInit {
             .orderByChild('groupname')
             .equalTo('customer')
             .on('child_added', (snapshot) => {
-                //console.log(snapshot.key);
+                ////console.log(snapshot.key);
 
                 this.dataService.getUser(snapshot.key)
                     .then((snapshot) => {
-                      //console.log(snapshot.val());
+                      ////console.log(snapshot.val());
                       let customer = this.mappingService.getUser(snapshot.val(), snapshot.key);
                       this.customers.push(customer);
-                      console.log(customer.favorites);
-                      console.log(this.customers);
+                      //console.log(customer.favorites);
+                      //console.log(this.customers);
                     })
 
             })

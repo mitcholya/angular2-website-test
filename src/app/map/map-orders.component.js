@@ -24,9 +24,9 @@ var MapOrdersComponent = (function () {
         // this.dataService.getOrders()
         //     .then((snapshot) => {
         //         this.markers = this.mappingService.getOrders(snapshot);
-        //         console.log(this.markers);
+        //         //console.log(this.markers);
         //     })
-        console.log(this.lat, this.lng);
+        //console.log(this.lat, this.lng);
         this.lat = Number(this.latitude);
         this.lng = Number(this.longitude);
     };

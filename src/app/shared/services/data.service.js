@@ -164,12 +164,12 @@ var DataService = (function () {
             headers: headers
         })
             .map(function (res) {
-            console.log(res.headers.keys());
+            //console.log(res.headers.keys());
             peginatedResult.result = res.json();
             if (res.headers.get("Pagination") != null) {
                 //var pagination = JSON.parse(res.headers.get("Pagination"));
                 var paginationHeader = _this.itemsService.getSerialized(JSON.parse(res.headers.get("Pagination")));
-                console.log(paginationHeader);
+                //console.log(paginationHeader);
                 peginatedResult.pagination = paginationHeader;
             }
             return peginatedResult;
@@ -220,7 +220,7 @@ var DataService = (function () {
         var serverError = error.json();
         var modelStateErrors = '';
         if (!serverError.type) {
-            console.log(serverError);
+            //console.log(serverError);
             for (var key in serverError) {
                 if (serverError[key])
                     modelStateErrors += serverError[key] + '\n';

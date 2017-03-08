@@ -21,7 +21,7 @@ export class CompanyComponent implements OnInit {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-            console.log(params);
+            //console.log(params);
             this.company = params;
             this.getUserImage().then(url => {
                 this.image = url;
@@ -32,7 +32,7 @@ export class CompanyComponent implements OnInit {
     }
 
     getUserImage() {
-        console.log(this.company.sid);
+        //console.log(this.company.sid);
         return this.dataService.getStorageRef().child('images/' + this.company.sid + '/profile.jpg').getDownloadURL();
     }
 

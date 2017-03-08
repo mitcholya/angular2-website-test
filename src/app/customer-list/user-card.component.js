@@ -13,7 +13,7 @@ var UserCardComponent = (function () {
     function UserCardComponent() {
     }
     UserCardComponent.prototype.ngOnInit = function () {
-        console.log(this.item);
+        //console.log(this.item);
     };
     __decorate([
         core_1.Input(), 

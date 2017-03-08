@@ -28,7 +28,7 @@ export class OrderDetailsComponent implements OnInit {
 
     ngOnInit() {
         this.sub = this.route.queryParams.subscribe(params => {
-            console.log(params);
+            //console.log(params);
             this.order = params;
             this.latitude = this.order.latitude;
             this.longitude = this.order.longitude;

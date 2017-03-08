@@ -22,7 +22,7 @@ var OrderDetailsComponent = (function () {
     OrderDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.queryParams.subscribe(function (params) {
-            console.log(params);
+            //console.log(params);
             _this.order = params;
             _this.latitude = _this.order.latitude;
             _this.longitude = _this.order.longitude;

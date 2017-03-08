@@ -19,7 +19,7 @@ var CompanyComponent = (function () {
     CompanyComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
-            console.log(params);
+            //console.log(params);
             _this.company = params;
             _this.getUserImage().then(function (url) {
                 _this.image = url;
@@ -27,7 +27,7 @@ var CompanyComponent = (function () {
         });
     };
     CompanyComponent.prototype.getUserImage = function () {
-        console.log(this.company.sid);
+        //console.log(this.company.sid);
         return this.dataService.getStorageRef().child('images/' + this.company.sid + '/profile.jpg').getDownloadURL();
     };
     CompanyComponent = __decorate([

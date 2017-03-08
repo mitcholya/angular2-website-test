@@ -53,8 +53,8 @@ var ScheduleEditComponent = (function () {
         });
     };
     ScheduleEditComponent.prototype.updateSchedule = function (editScheduleForm) {
+        //console.log(editScheduleForm.value);
         var _this = this;
-        console.log(editScheduleForm.value);
         var scheduleMapped = this.mappingService.mapScheduleDetailsToSchedule(this.schedule);
         this.loadingBarService.start();
         this.dataService.updateSchedule(scheduleMapped)

@@ -34,7 +34,7 @@ export class OrderComponent implements OnInit {
         }
         // this.authService.getLoggedInUser().
         //     subscribe(() => {
-        //         console.log('Привет!!!');
+        //         //console.log('Привет!!!');
         //     })
         // this.loadUser().
         //     subscribe(() => {
@@ -42,15 +42,15 @@ export class OrderComponent implements OnInit {
         //     })
         this.dataService.getOrders().
             then((snapshot) => {
-                console.log(snapshot.val());
+                //console.log(snapshot.val());
                  let arr = this.mappingService.getOrders(snapshot);
                  this.orders = _.uniqBy(arr, 'oid');
-                 console.log(this.orders);
+                 //console.log(this.orders);
             });
 
         this.dataService.getOrders().
             then((snapshot) => {
-                console.log(snapshot.val());
+                //console.log(snapshot.val());
             });    
     }
 
@@ -61,7 +61,7 @@ export class OrderComponent implements OnInit {
     showOrders() {
         this.dataService.getOrders().
             then((snapshot) => {
-                console.log(snapshot);
+                //console.log(snapshot);
                 this.orders = this.mappingService.getOrders(snapshot);
             });
     }

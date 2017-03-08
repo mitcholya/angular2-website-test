@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
         this.dataService.getOrders()
             .then((snapshot) => {
                 this.markers = this.mappingService.getOrders(snapshot);
-                console.log(this.markers);
+                //console.log(this.markers);
             })
     }
 }

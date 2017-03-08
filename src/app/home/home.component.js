@@ -19,11 +19,11 @@ var HomeComponent = (function () {
     //heroes: Observable<Hero[]>;
     //private searchTerms = new Subject<string>();
     function HomeComponent(dataService, authService) {
-        // console.log(this.data.getPlaces().then((snapshot) => {
-        //     console.log(snapshot.val());
+        // //console.log(this.data.getPlaces().then((snapshot) => {
+        //     //console.log(snapshot.val());
         // }));
-        // console.log(this.data.searchService('Образование').then((snapshot) => {
-        //     console.log(snapshot.val());
+        // //console.log(this.data.searchService('Образование').then((snapshot) => {
+        //     //console.log(snapshot.val());
         // }));
         this.dataService = dataService;
         this.authService = authService;
@@ -47,7 +47,7 @@ var HomeComponent = (function () {
         //         : Observable.of<IService[]>([]))
         //     .catch(error => {
         //         // TODO: real error handling
-        //         console.log(`Error in component ... ${error}`);
+        //         //console.log(`Error in component ... ${error}`);
         //         return Observable.of<IService[]>([]);
         //     });
         // this.setFilteredItems();
@@ -55,7 +55,7 @@ var HomeComponent = (function () {
         //  this.setFilteredItems();
         // });
         this.loadUserProfile();
-        console.log(this.userLogged);
+        //console.log(this.userLogged);
         this.getUser();
     };
     // ngOnChanges(changes) {
@@ -79,7 +79,7 @@ var HomeComponent = (function () {
             //this.userDataLoaded = false;
             this.getUserName().then(function (snapshot) {
                 _this.userName = snapshot.val();
-                console.log(_this.userName);
+                //console.log(this.userName);
             });
         }
     };
@@ -96,14 +96,14 @@ var HomeComponent = (function () {
         //this.data.addService(service);
     };
     HomeComponent.prototype.getUserName = function () {
-        console.log(this.firebaseAccount);
+        //console.log(this.firebaseAccount);
         //if (this.firebaseAccount) {
         return this.dataService.getUsername(this.authService.getLoggedInUser().uid);
         //}
     };
     // dataSearch(){
     //     this.data.getServices().then((snapshot) => {
-    //             //console.log(snapshot.val());
+    //             ////console.log(snapshot.val());
     //            this.dataObservable =  this.itemsService.reversedItems<IService>(this.mappingService.getServices(snapshot))
     //         });
     //     return this.dataObservable;
@@ -114,7 +114,7 @@ var HomeComponent = (function () {
         // }
     };
     HomeComponent.prototype.onChanged = function (toggle) {
-        console.log(toggle);
+        //console.log(toggle);
         if (toggle == true) {
             this.loadUserProfile();
             this.userLogged = true;
@@ -133,7 +133,7 @@ var HomeComponent = (function () {
             var uid = this.authService.getLoggedInUser().uid;
             this.dataService.getUser(uid).then(function (snapshot) {
                 _this.user = snapshot.val();
-                console.log(_this.user);
+                //console.log(this.user);
                 _this.userDataLoaded = true;
             });
         }

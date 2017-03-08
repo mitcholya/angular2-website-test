@@ -56,12 +56,12 @@ export class MappingService {
             return orders;
 
         let list = snapshot.val();
-        console.log(list);
+        //console.log(list);
 
         Object.keys(snapshot.val()).map((key: any) => {
             let order: any = list[key];
-            console.log(order);
-            console.log(order.location);
+            //console.log(order);
+            //console.log(order.location);
             orders.push({
                 oid: key,
                 title: order.title,
@@ -70,7 +70,7 @@ export class MappingService {
                 longitude: order.longitude                
             });
         });
-        console.log(orders);
+        //console.log(orders);
         return orders;    
     }
 

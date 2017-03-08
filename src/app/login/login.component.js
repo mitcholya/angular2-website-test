@@ -28,7 +28,7 @@ var LoginComponent = (function () {
         });
         this.email = this.loginFirebaseAccountForm.controls['email'];
         this.password = this.loginFirebaseAccountForm.controls['password'];
-        console.log(this.userLogged);
+        //console.log(this.userLogged);
     };
     LoginComponent.prototype.onSubmit = function (signInForm) {
         var _this = this;
@@ -43,11 +43,11 @@ var LoginComponent = (function () {
                 email: signInForm.email,
                 password: signInForm.password
             };
-            console.log(user);
+            //console.log(user);
             this.authService.signInUser(user.email, user.password)
                 .then(function (result) {
                 // self.nav.setRoot(TabsPage);
-                console.log('Привет');
+                //console.log('Привет');
                 //this.userName = 'Привет!!!';
                 //this.getUserName();
                 _this.change(true);
@@ -69,7 +69,7 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.register = function () {
         // this.nav.push(SignupPage);
-        console.log(this.userLogged);
+        //console.log(this.userLogged);
     };
     LoginComponent.prototype.signOut = function () {
         this.userName = '';
@@ -80,7 +80,7 @@ var LoginComponent = (function () {
     //     let uid = this.authService.getLoggedInUser().uid;
     //     this.dataService.getUsername(uid).then((snapshot) => {
     //         this.userName = snapshot.val();
-    //         console.log(snapshot.val());
+    //         //console.log(snapshot.val());
     //     });
     // }
     LoginComponent.prototype.change = function (toggle) {

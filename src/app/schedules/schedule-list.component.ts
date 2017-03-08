@@ -92,8 +92,8 @@ export class ScheduleListComponent implements OnInit {
     pageChanged(event: any): void {
         this.currentPage = event.page;
         this.loadSchedules();
-        //console.log('Page changed to: ' + event.page);
-        //console.log('Number items per page: ' + event.itemsPerPage);
+        ////console.log('Page changed to: ' + event.page);
+        ////console.log('Number items per page: ' + event.itemsPerPage);
     };
 
     removeSchedule(schedule: ISchedule) {

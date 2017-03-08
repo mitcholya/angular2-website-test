@@ -25,15 +25,15 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
-            console.log(params);
+            //console.log(params);
             _this.user = params;
-            console.log(_this.user.favorites);
+            //console.log(this.user.favorites);
         });
         this.loadFavorites();
         this.getUser();
         // this.dataService.getUser()
-        // console.log(this.mappingService.getUser())
-        //console.log();
+        // //console.log(this.mappingService.getUser())
+        ////console.log();
     };
     ProfileComponent.prototype.loadFavorites = function () {
         var _this = this;
@@ -56,7 +56,7 @@ var ProfileComponent = (function () {
             _this.dataService.getOrdersRef().child(key).once('value').
                 then(function (snapshot) {
                 _this.orders.unshift(_this.mappingService.getOrder(snapshot.val(), key));
-                console.log(_this.orders);
+                //console.log(this.orders);
             });
         });
     };
@@ -66,7 +66,7 @@ var ProfileComponent = (function () {
         this.dataService.getUser(uid)
             .then(function (snapshot) {
             var user = _this.mappingService.getUser(snapshot, uid);
-            console.log(user);
+            //console.log(user);
         });
     };
     ProfileComponent.prototype.joinGroup = function () {
@@ -78,7 +78,7 @@ var ProfileComponent = (function () {
             .orderByChild('groupname')
             .equalTo('worker')
             .on('child_added', function (snapshot) {
-            console.log(snapshot.key);
+            //console.log(snapshot.key);
         });
     };
     ProfileComponent = __decorate([

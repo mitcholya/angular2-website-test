@@ -25,7 +25,7 @@ var MapComponent = (function () {
         this.dataService.getOrders()
             .then(function (snapshot) {
             _this.markers = _this.mappingService.getOrders(snapshot);
-            console.log(_this.markers);
+            //console.log(this.markers);
         });
     };
     MapComponent = __decorate([

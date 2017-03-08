@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
         this.email = this.loginFirebaseAccountForm.controls['email'];
         this.password = this.loginFirebaseAccountForm.controls['password'];
-        console.log(this.userLogged);
+        //console.log(this.userLogged);
     }
 
     onSubmit(signInForm: any): void {
@@ -53,11 +53,11 @@ export class LoginComponent implements OnInit {
                 password: signInForm.password
             };
 
-            console.log(user);
+            //console.log(user);
             this.authService.signInUser(user.email, user.password)
                 .then((result) => {
                     // self.nav.setRoot(TabsPage);
-                    console.log('Привет');
+                    //console.log('Привет');
                     //this.userName = 'Привет!!!';
                     //this.getUserName();
                     this.change(true);
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
 
     register() {
         // this.nav.push(SignupPage);
-        console.log(this.userLogged);
+        //console.log(this.userLogged);
     }
 
     signOut() {
@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
     //     let uid = this.authService.getLoggedInUser().uid;
     //     this.dataService.getUsername(uid).then((snapshot) => {
     //         this.userName = snapshot.val();
-    //         console.log(snapshot.val());
+    //         //console.log(snapshot.val());
     //     });
     // }
     change(toggle) {

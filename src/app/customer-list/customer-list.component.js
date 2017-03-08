@@ -26,14 +26,14 @@ var CustomerListComponent = (function () {
             .orderByChild('groupname')
             .equalTo('customer')
             .on('child_added', function (snapshot) {
-            //console.log(snapshot.key);
+            ////console.log(snapshot.key);
             _this.dataService.getUser(snapshot.key)
                 .then(function (snapshot) {
-                //console.log(snapshot.val());
+                ////console.log(snapshot.val());
                 var customer = _this.mappingService.getUser(snapshot.val(), snapshot.key);
                 _this.customers.push(customer);
-                console.log(customer.favorites);
-                console.log(_this.customers);
+                //console.log(customer.favorites);
+                //console.log(this.customers);
             });
         });
     };

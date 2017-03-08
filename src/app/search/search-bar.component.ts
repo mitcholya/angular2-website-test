@@ -42,12 +42,12 @@ export class SearchBarComponent {
         if (this.queryText.trim().length !== 0) {
             this.services = [];
             this.data.getServices().then((snapshot) => {
-                //console.log(snapshot.val());
+                ////console.log(snapshot.val());
                 this.itemsService.reversedItems<IService>(this.mappingService.getServices(snapshot)).forEach((service) => {
                     if (service.title.toLowerCase().includes(this.queryText.toLowerCase())) {
                         this.services.push(service);
                         this.services2 = _.uniqBy(this.services, 'sid');
-                        console.log(this.services);
+                        //console.log(this.services);
                     }
                 });
             });
@@ -58,7 +58,7 @@ export class SearchBarComponent {
     }
 
     loadDetails(sid: string) {
-        console.log(sid);
+        //console.log(sid);
         this.services2 = [];
     }
 }

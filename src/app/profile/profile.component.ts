@@ -28,16 +28,16 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe((params) => {
-            console.log(params);
+            //console.log(params);
             this.user = params;
-            console.log(this.user.favorites);
+            //console.log(this.user.favorites);
         })
         this.loadFavorites();
         this.getUser();
 
         // this.dataService.getUser()
-        // console.log(this.mappingService.getUser())
-        //console.log();
+        // //console.log(this.mappingService.getUser())
+        ////console.log();
 
     }
 
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
             this.dataService.getOrdersRef().child(key).once('value').
                 then((snapshot) => {
                     this.orders.unshift(this.mappingService.getOrder(snapshot.val(), key));
-                    console.log(this.orders);
+                    //console.log(this.orders);
                 });
         })
     }
@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
         this.dataService.getUser(uid)
             .then((snapshot) => {
                 let user = this.mappingService.getUser(snapshot, uid);
-                console.log(user);
+                //console.log(user);
             })
     }
 
@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
         .orderByChild('groupname')
             .equalTo('worker')
                 .on('child_added',(snapshot) => {
-                    console.log(snapshot.key);
+                    //console.log(snapshot.key);
                 })
     }
 }
