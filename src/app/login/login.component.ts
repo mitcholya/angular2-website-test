@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from 
 import { UserCredentials } from '../shared/interfaces';
 import { DataService } from '../shared/services/data.service';
 import { AuthService } from '../shared/services/auth.service';
+import { EmailValidator } from '../shared/validators/email.validators';
 
 @Component({
     moduleId: module.id,
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginFirebaseAccountForm = this.fb.group({
-            'email': ['', Validators.compose([Validators.required])],
+            'email': ['', Validators.compose([Validators.required, EmailValidator.isValid])],
             'password': ['', Validators.compose([Validators.required, Validators.minLength(5)])]
         });
 

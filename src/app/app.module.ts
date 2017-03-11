@@ -42,6 +42,7 @@ import { ItemsService } from './shared/utils/items.service';
 import { MappingService } from './shared/utils/mapping.service';
 import { NotificationService } from './shared/utils/notification.service';
 import { AuthService } from './shared/services/auth.service';
+import { EmailValidator } from './shared/validators/email.validators';
 
 @NgModule({
     imports: [
@@ -89,7 +90,8 @@ import { AuthService } from './shared/services/auth.service';
         MappingService,
         NotificationService,
         SlimLoadingBarService,
-        AuthService
+        AuthService,
+        EmailValidator
     ],
     bootstrap: [AppComponent]
 })

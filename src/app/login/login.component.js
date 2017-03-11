@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var data_service_1 = require('../shared/services/data.service');
 var auth_service_1 = require('../shared/services/auth.service');
+var email_validators_1 = require('../shared/validators/email.validators');
 var LoginComponent = (function () {
     function LoginComponent(fb, dataService, authService) {
         this.fb = fb;
@@ -23,7 +24,7 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginFirebaseAccountForm = this.fb.group({
-            'email': ['', forms_1.Validators.compose([forms_1.Validators.required])],
+            'email': ['', forms_1.Validators.compose([forms_1.Validators.required, email_validators_1.EmailValidator.isValid])],
             'password': ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.minLength(5)])]
         });
         this.email = this.loginFirebaseAccountForm.controls['email'];

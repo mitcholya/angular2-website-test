@@ -1,19 +1,21 @@
-<div class="row">
+<div class="row margin" >
     <div class="col-xs-12">
         <div class="col-md-10 col-md-10 col-xs-10">
 <form [formGroup]="loginFirebaseAccountForm" (ngSubmit)="onSubmit(loginFirebaseAccountForm.value)">
-        <!--<div [class.error]="!email.valid && email.touched">-->
-            <label floating>Email address</label>
+        <div>
+            <div [class.error]="!email.valid && email.touched">Email address</div>
             <input type="text" name="email" value="" formControlName="email"/>
-        <!--</div>-->
-        <!--<div *ngIf="email.hasError('required') && email.touched" class="error-box">* Email is required.</div>
-        <div *ngIf="email.hasError('pattern') && email.touched" class="error-box">* Enter a valid email address.</div>-->
-        <!--<div [class.error]="!password.valid && password.touched">-->
-            <label floating>Password</label>
+            <!--
+            Email not requiured-->
+        </div>
+        <div *ngIf="email.hasError('required') && email.touched" class="error">* Email is required.</div>
+        <div *ngIf="email.hasError('isValid') && email.touched" class="error">* Enter a valid email address.</div>
+        <div>
+            <div [class.error]="!password.valid && password.touched">Password</div>
             <input type="password" name="password" value="" formControlName="password"/>
-        <!--</div>-->
-        <!--<div *ngIf="password.hasError('required') && password.touched" class="error-box">* Password is required.</div>
-        <div *ngIf="password.hasError('minlength') && password.touched" class="error-box">* Minimum password length is 5.</div>-->
+        </div>
+        <div *ngIf="password.hasError('required') && password.touched" class="error">* Password is required.</div>
+        <div *ngIf="password.hasError('minlength') && password.touched" class="error">* Minimum password length is 5.</div>
         <br/><br/>
         <button type="submit" class="custom-button" [disabled]="!loginFirebaseAccountForm.valid" block>Sign in</button>
         <br/>

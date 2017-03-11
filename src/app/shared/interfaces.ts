@@ -88,3 +88,7 @@ export interface IGroup {
     gid: string;
     groupname: string;
 }
+
+export interface ValidationResult {
+    [key: string]: boolean;
+}

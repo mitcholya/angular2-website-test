@@ -48,6 +48,7 @@ var items_service_1 = require('./shared/utils/items.service');
 var mapping_service_1 = require('./shared/utils/mapping.service');
 var notification_service_1 = require('./shared/utils/notification.service');
 var auth_service_1 = require('./shared/services/auth.service');
+var email_validators_1 = require('./shared/validators/email.validators');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -98,7 +99,8 @@ var AppModule = (function () {
                 mapping_service_1.MappingService,
                 notification_service_1.NotificationService,
                 ng2_slim_loading_bar_1.SlimLoadingBarService,
-                auth_service_1.AuthService
+                auth_service_1.AuthService,
+                email_validators_1.EmailValidator
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
