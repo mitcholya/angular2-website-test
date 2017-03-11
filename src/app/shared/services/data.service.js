@@ -95,6 +95,9 @@ var DataService = (function () {
     };
     DataService.prototype.getUserGroup = function (user) {
     };
+    DataService.prototype.removeFavorites = function (user, order) {
+        return this.usersRef.child(user + '/favorites/' + order).remove();
+    };
     DataService.prototype.getUsers = function () {
         return this.http.get(this._baseUrl + 'users')
             .map(function (res) {

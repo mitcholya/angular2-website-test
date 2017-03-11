@@ -116,6 +116,10 @@ export class DataService {
 
     }
 
+    removeFavorites(user: string, order: string) {
+        return this.usersRef.child(user + '/favorites/' + order).remove();
+    }
+
     getUsers(): Observable<IUser[]> {
         return this.http.get(this._baseUrl + 'users')
             .map((res: Response) => {

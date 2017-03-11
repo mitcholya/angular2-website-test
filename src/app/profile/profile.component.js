@@ -81,6 +81,14 @@ var ProfileComponent = (function () {
             //console.log(snapshot.key);
         });
     };
+    ProfileComponent.prototype.unsubscribeOrder = function (order) {
+        var _this = this;
+        var uid = this.authService.getLoggedInUser().uid;
+        this.dataService.removeFavorites(uid, order).
+            then(function () {
+            _this.loadFavorites();
+        });
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

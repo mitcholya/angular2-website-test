@@ -3,8 +3,10 @@
 <!--<div *ngFor="let favorite of user.favorites">
 <div>{{user.favorites}}</div>    
 </div> -->
+<h4>Заказанные работы:</h4>
 <div style="border: 1px solid red" *ngFor="let order of orders">
     <div>{{order.description}}</div>
     <div>{{order.title}}</div>
+    <button (click)="unsubscribeOrder(order.oid)">Отписаться</button>
 </div>
-<button (click)="joinGroup()">Записаться в группу</button>
+<!--<button (click)="joinGroup()">Записаться в группу</button>-->

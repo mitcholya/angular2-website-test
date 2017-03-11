@@ -24,6 +24,7 @@ var OrderDetailsComponent = (function () {
         this.sub = this.route.queryParams.subscribe(function (params) {
             //console.log(params);
             _this.order = params;
+            console.log(_this.order);
             _this.latitude = _this.order.latitude;
             _this.longitude = _this.order.longitude;
             _this.title = _this.order.title;

@@ -30,6 +30,7 @@ export class OrderDetailsComponent implements OnInit {
         this.sub = this.route.queryParams.subscribe(params => {
             //console.log(params);
             this.order = params;
+            console.log(this.order);
             this.latitude = this.order.latitude;
             this.longitude = this.order.longitude;
             this.title = this.order.title;

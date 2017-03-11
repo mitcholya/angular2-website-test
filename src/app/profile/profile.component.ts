@@ -93,4 +93,13 @@ export class ProfileComponent implements OnInit {
                     //console.log(snapshot.key);
                 })
     }
+
+    unsubscribeOrder(order) {
+        let uid = this.authService.getLoggedInUser().uid;
+
+        this.dataService.removeFavorites(uid, order).
+            then(() => {
+                this.loadFavorites();
+            });
+    }
 }
