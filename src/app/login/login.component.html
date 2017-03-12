@@ -17,27 +17,30 @@
         <div *ngIf="password.hasError('required') && password.touched" class="error">* Password is required.</div>
         <div *ngIf="password.hasError('minlength') && password.touched" class="error">* Minimum password length is 5.</div>
         <br/><br/>
-        <button type="submit" class="custom-button" [disabled]="!loginFirebaseAccountForm.valid" block>Sign in</button>
+        <button type="submit" class="custom-button" [disabled]="!loginFirebaseAccountForm.valid" block>Войти</button>
         <br/>
 
     </form>
+    <button [hidden]="!userLogged" (click)="signOut()">Выход</button>
 
             <button (click)="register()">
+            
             <!--<ion-icon name='flame'></ion-icon>-->
-            Register a firebase account</button>
+            Регистрация</button>
         <div padding>
             <!--<img src="assets/images/firebase.png" />-->
             <div>
-                <div>
+                <!--<div>
                     Built on Firebase
-                </div>
+                </div>-->
                 <p>
-                    Create a Firebase profile for free and use your email and password to sign in to Forum-App
+                    <!--Create a Firebase profile for free and use your email and password to sign in to Forum-App-->
+                    Создайте свою учетную запись используя свой адрес электронной почты и пароль
                 </p>
             </div>
         </div>
-    <button (click)="signOut()">Выход</button>
-    <div>Ваше имя пользователя: {{userName}}</div>
+    
+    <!--<div>Ваше имя пользователя: {{userName}}</div>-->
             </div>
         </div>    
     </div>

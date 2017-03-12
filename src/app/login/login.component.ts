@@ -87,6 +87,7 @@ export class LoginComponent implements OnInit {
     signOut() {
         this.userName = '';
         this.change(false);
+        this.userLogged = false;
         return this.authService.signOut();
     }
 

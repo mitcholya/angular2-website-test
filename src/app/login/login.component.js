@@ -75,6 +75,7 @@ var LoginComponent = (function () {
     LoginComponent.prototype.signOut = function () {
         this.userName = '';
         this.change(false);
+        this.userLogged = false;
         return this.authService.signOut();
     };
     // getUserName() {

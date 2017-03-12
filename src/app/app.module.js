@@ -42,6 +42,7 @@ var customer_list_component_1 = require('./customer-list/customer-list.component
 var user_card_component_1 = require('./customer-list/user-card.component');
 var map_component_1 = require('./map/map.component');
 var map_orders_component_1 = require('./map/map-orders.component');
+var signup_component_1 = require('./login/signup.component');
 var data_service_1 = require('./shared/services/data.service');
 var config_service_1 = require('./shared/utils/config.service');
 var items_service_1 = require('./shared/utils/items.service');
@@ -90,7 +91,8 @@ var AppModule = (function () {
                 profile_component_1.ProfileComponent,
                 customer_list_component_1.CustomerListComponent,
                 map_component_1.MapComponent,
-                map_orders_component_1.MapOrdersComponent
+                map_orders_component_1.MapOrdersComponent,
+                signup_component_1.SignUpComponent
             ],
             providers: [
                 config_service_1.ConfigService,

@@ -35,6 +35,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { UserCardComponent } from './customer-list/user-card.component';
 import { MapComponent } from './map/map.component';
 import { MapOrdersComponent } from './map/map-orders.component';
+import { SignUpComponent } from './login/signup.component';
   
 import { DataService } from './shared/services/data.service';
 import { ConfigService } from './shared/utils/config.service';
@@ -81,7 +82,8 @@ import { EmailValidator } from './shared/validators/email.validators';
         ProfileComponent,
         CustomerListComponent,
         MapComponent,
-        MapOrdersComponent
+        MapOrdersComponent,
+        SignUpComponent
     ],
     providers: [
         ConfigService,
