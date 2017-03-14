@@ -1,1 +1,28 @@
 <h3>Регистрация</h3>
+
+<form [formGroup]="signUpFirebaseAccountForm" (ngSubmit)="onSubmit(signUpFirebaseAccountForm.value)">
+        <div>
+            <div [class.error]="!email.valid && email.touched">Email address</div>
+            <input type="text" name="email" value="" formControlName="email"/>
+            <!--
+            Email not requiured-->
+        </div>
+        <div *ngIf="email.hasError('required') && email.touched" class="error">* Email is required.</div>
+        <div *ngIf="email.hasError('isValid') && email.touched" class="error">* Enter a valid email address.</div>
+        <div>
+            <div [class.error]="!password.valid && password.touched">Password</div>
+            <input type="password" name="password" value="" formControlName="password"/>
+        </div>
+        <div *ngIf="password.hasError('required') && password.touched" class="error">* Password is required.</div>
+        <div *ngIf="password.hasError('minlength') && password.touched" class="error">* Minimum password length is 5.</div>
+        <div>
+            <div [class.error]="!password.valid && password.touched">Password</div>
+            <input type="password" name="retry_password" value="" formControlName="retry_password"/>
+        </div>
+        <div *ngIf="retry_password.hasError('required') && retry_password.touched" class="error">* Password is required.</div>
+        <div *ngIf="retry_password.hasError('minlength') && retry_password.touched" class="error">* Minimum password length is 5.</div>
+        <div *ngIf="retry_password.hasError('mismatchPassword') && retry_password.touched" class="error">* Password mismatch</div>
+        <br/><br/>
+        <button type="submit" [hidden]="userLogged" class="custom-button" [disabled]="!signUpFirebaseAccountForm.valid" block>Зарегистрироваться</button>
+        <br/>
+</form>

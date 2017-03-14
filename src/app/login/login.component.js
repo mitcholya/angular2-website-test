@@ -10,16 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
+var router_1 = require('@angular/router');
 var data_service_1 = require('../shared/services/data.service');
 var auth_service_1 = require('../shared/services/auth.service');
 var email_validators_1 = require('../shared/validators/email.validators');
 var LoginComponent = (function () {
-    function LoginComponent(fb, dataService, authService) {
+    function LoginComponent(fb, dataService, authService, router) {
         this.fb = fb;
         this.dataService = dataService;
         this.authService = authService;
+        this.router = router;
         this.userName = '';
-        this.userLogged = false;
         this.onChanged = new core_1.EventEmitter();
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -52,7 +53,6 @@ var LoginComponent = (function () {
                 //this.userName = 'Привет!!!';
                 //this.getUserName();
                 _this.change(true);
-                _this.userLogged = true;
             }).catch(function (error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -71,11 +71,11 @@ var LoginComponent = (function () {
     LoginComponent.prototype.register = function () {
         // this.nav.push(SignupPage);
         //console.log(this.userLogged);
+        this.router.navigate(['/signup']);
     };
     LoginComponent.prototype.signOut = function () {
         this.userName = '';
         this.change(false);
-        this.userLogged = false;
         return this.authService.signOut();
     };
     // getUserName() {
@@ -87,6 +87,8 @@ var LoginComponent = (function () {
     // }
     LoginComponent.prototype.change = function (toggle) {
         this.onChanged.emit(toggle);
+        this.userLogged = toggle;
+        //this.userLogged = false;
     };
     __decorate([
         core_1.Input(), 
@@ -103,7 +105,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder, data_service_1.DataService, auth_service_1.AuthService])
+        __metadata('design:paramtypes', [forms_1.FormBuilder, data_service_1.DataService, auth_service_1.AuthService, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 }());

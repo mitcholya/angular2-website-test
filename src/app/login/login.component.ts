@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 
 // import { SignupPage } from '../signup/signup';
 import { UserCredentials } from '../shared/interfaces';
@@ -19,13 +20,14 @@ export class LoginComponent implements OnInit {
     email: AbstractControl;
     password: AbstractControl;
     userName: string = '';
-    @Input() userLogged: boolean = false;
+    @Input() userLogged: boolean;
     @Output() onChanged = new EventEmitter<boolean>(); 
 
     constructor(
         public fb: FormBuilder,
         public dataService: DataService,
-        public authService: AuthService) { }
+        public authService: AuthService,
+        public router: Router) { }
 
     ngOnInit() {
         this.loginFirebaseAccountForm = this.fb.group({
@@ -62,7 +64,6 @@ export class LoginComponent implements OnInit {
                     //this.userName = 'Привет!!!';
                     //this.getUserName();
                     this.change(true);
-                    this.userLogged = true;
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -82,12 +83,12 @@ export class LoginComponent implements OnInit {
     register() {
         // this.nav.push(SignupPage);
         //console.log(this.userLogged);
+        this.router.navigate(['/signup']);
     }
 
     signOut() {
         this.userName = '';
         this.change(false);
-        this.userLogged = false;
         return this.authService.signOut();
     }
 
@@ -100,5 +101,7 @@ export class LoginComponent implements OnInit {
     // }
     change(toggle) {
         this.onChanged.emit(toggle);
+        this.userLogged = toggle;
+        //this.userLogged = false;
     }
 }

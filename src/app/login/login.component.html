@@ -17,7 +17,7 @@
         <div *ngIf="password.hasError('required') && password.touched" class="error">* Password is required.</div>
         <div *ngIf="password.hasError('minlength') && password.touched" class="error">* Minimum password length is 5.</div>
         <br/><br/>
-        <button type="submit" class="custom-button" [disabled]="!loginFirebaseAccountForm.valid" block>Войти</button>
+        <button type="submit" [hidden]="userLogged" class="custom-button" [disabled]="!loginFirebaseAccountForm.valid" block>Войти</button>
         <br/>
 
     </form>

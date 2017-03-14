@@ -198,7 +198,7 @@ export class HomeComponent implements OnInit {
 
          this.dataService.getUser(uid).then((snapshot) => {
             this.user = snapshot.val();
-            //console.log(this.user);
+            console.log(this.user);
             this.userDataLoaded = true;
         });
         }

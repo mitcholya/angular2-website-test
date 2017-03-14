@@ -8,6 +8,7 @@ var company_component_1 = require('./company/company.component');
 var order_details_component_1 = require('./order-details/order-details.component');
 var profile_component_1 = require('./profile/profile.component');
 var customer_list_component_1 = require('./customer-list/customer-list.component');
+var signup_component_1 = require('./login/signup.component');
 var appRoutes = [
     { path: 'users', component: user_list_component_1.UserListComponent },
     { path: 'schedules', component: schedule_list_component_1.ScheduleListComponent },
@@ -16,6 +17,7 @@ var appRoutes = [
     { path: 'order-details', component: order_details_component_1.OrderDetailsComponent },
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'customer-list', component: customer_list_component_1.CustomerListComponent },
+    { path: 'signup', component: signup_component_1.SignUpComponent },
     { path: '', component: home_component_1.HomeComponent }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

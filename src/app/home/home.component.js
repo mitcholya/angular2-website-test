@@ -133,7 +133,7 @@ var HomeComponent = (function () {
             var uid = this.authService.getLoggedInUser().uid;
             this.dataService.getUser(uid).then(function (snapshot) {
                 _this.user = snapshot.val();
-                //console.log(this.user);
+                console.log(_this.user);
                 _this.userDataLoaded = true;
             });
         }
