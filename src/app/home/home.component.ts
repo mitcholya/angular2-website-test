@@ -41,100 +41,43 @@ export class HomeComponent implements OnInit {
     firebaseAccount: any = {};
     userName:any = '';
     user: any;
-    userDataLoaded: boolean = false;
-    //userLogged: boolean;
-
-    // searchTerm: string = '';
-    // searchControl: FormControl;
-    // items: any;
-
-
-    //heroes: Observable<Hero[]>;
-    //private searchTerms = new Subject<string>();
+    //userDataLoaded: boolean = false;
 
 
 
     constructor(private dataService: DataService,
                 private authService: AuthService) {
-        // //console.log(this.data.getPlaces().then((snapshot) => {
-        //     //console.log(snapshot.val());
-        // }));
-        // //console.log(this.data.searchService('Образование').then((snapshot) => {
-        //     //console.log(snapshot.val());
-        // }));
 
-        // this.searchControl = new FormControl();
     }
 
-    // search(term: string): void {
-    // // Push a search term into the observable stream.
-    // this.searchTerms.next(term);
-    // }
 
     ngOnInit(): void {
-        // this.services = this.searchTerms
-        //     .debounceTime(300)        // wait for 300ms pause in events
-        //     .distinctUntilChanged()   // ignore if next search term is same as previous
-        //     .switchMap(term => term   // switch to new observable each time
-        //         // return the http search observable
-        //         ? this.dataSearch(term)
-        //         // or the observable of empty heroes if no search term
-        //         : Observable.of<IService[]>([]))
-        //     .catch(error => {
-        //         // TODO: real error handling
-        //         //console.log(`Error in component ... ${error}`);
-        //         return Observable.of<IService[]>([]);
-        //     });
-
-        // this.setFilteredItems();
- 
-        // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
- 
-        //  this.setFilteredItems();
- 
-        // });
-        this.loadUserProfile();
+        //this.loadUserProfile();
         //console.log(this.userLogged);
-        this.getUser();
+        //this.getUser();
+        if(this.authService.getLoggedInUser()) {
+            console.log(this.authService.getLoggedInUser().uid);
+            this.loadUserProfile();
+            this.userLogged = true; 
+            this.getUser();
+        }
 
     }
 
-    // ngOnChanges(changes) {
-    // // Called right after our bindings have been checked but only
-    // // if one of our bindings has changed.
-    // //
-    // // changes is an object of the format:
-    // // {
-    // //   'prop': PropertyUpdate
-    // // }
-    // this.loadUserProfile();
-    // }
-
-    // ngDoCheck() {
-    // // Custom change detection
-    // this.loadUserProfile();
-    // }
 
     loadUserProfile() {
-        this.firebaseAccount = this.authService.getLoggedInUser();
-        if (this.firebaseAccount) {
-        //this.userDataLoaded = false;
+        // this.firebaseAccount = this.authService.getLoggedInUser();
+        // if (this.firebaseAccount) {
 
         this.getUserName().then((snapshot) => {
             this.userName = snapshot.val();
             //console.log(this.userName);
         })
 
-        //this.userDataLoaded = true;
-        }
+        //}
 
     }
 
-    // setFilteredItems() {
- 
-    //     this.items = this.dataSearch();
- 
-    // }
 
     addService() {
         let service = {
@@ -150,28 +93,14 @@ export class HomeComponent implements OnInit {
 
     getUserName() {
 
-        //console.log(this.firebaseAccount);
-        //if (this.firebaseAccount) {
             return this.dataService.getUsername(this.authService.getLoggedInUser().uid);
-        //}
         
     }
-
-    // dataSearch(){
-    //     this.data.getServices().then((snapshot) => {
-    //             ////console.log(snapshot.val());
-    //            this.dataObservable =  this.itemsService.reversedItems<IService>(this.mappingService.getServices(snapshot))
-    //         });
-
-    //     return this.dataObservable;
-    // }
 
 
 
     clearData() {
-        // if ( this.queryText.trim().length == 0) {
-        //     this.services = [];
-        // }
+
     }
 
     onChanged(toggle) {
@@ -179,19 +108,20 @@ export class HomeComponent implements OnInit {
         if (toggle == true) {
             this.loadUserProfile();
             this.userLogged = true;
-            this.userDataLoaded = true;
+            //this.userDataLoaded = true;
+            this.getUser();
         }
         else {
-            this.userName = 'Гость';
+            this.userName = '';
             this.userLogged = false;
-            this.userDataLoaded = false;
+            //this.userDataLoaded = false;
         }
         
     }
 
     getUser() {
-        this.firebaseAccount = this.authService.getLoggedInUser();
-        if (this.firebaseAccount) {
+        // this.firebaseAccount = this.authService.getLoggedInUser();
+        // if (this.firebaseAccount) {
             
         
         let uid = this.authService.getLoggedInUser().uid;
@@ -199,9 +129,9 @@ export class HomeComponent implements OnInit {
          this.dataService.getUser(uid).then((snapshot) => {
             this.user = snapshot.val();
             console.log(this.user);
-            this.userDataLoaded = true;
+            //this.userDataLoaded = true;
         });
-        }
+       // }
         
     }
 

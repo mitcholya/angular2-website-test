@@ -46,16 +46,27 @@ export class SignUpComponent {
                 password: signUpForm.password
             };
 
-            this.authService.registerUser(user)
-                .then(() => {
-                    console.log('User created');
-                    console.log(this.authService.getLoggedInUser());
+            this.authService.registerUser(user);
+                // .then((success) => {
+                //     console.log(success)
+                //     console.log('User created');
+                //     console.log(this.authService.getLoggedInUser());
+                //     //this.authService.signOut();
+                //     this.addUser();
                     
-                })
-                .catch(() => {
-                    console.log('Error user created');
-                })
+                // })
+                // .catch(() => {
+                //     console.log('Error user created');
+                // })
 
         }
-    }       
+    } 
+
+    addUser() {
+        let user = this.authService.getLoggedInUser().uid;
+
+        let username = 'Test GMAIL';
+
+        this.authService.addUser(username, user);
+    }      
 }

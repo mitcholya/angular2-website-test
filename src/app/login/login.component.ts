@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
         this.email = this.loginFirebaseAccountForm.controls['email'];
         this.password = this.loginFirebaseAccountForm.controls['password'];
         //console.log(this.userLogged);
+
+        if(this.authService.getLoggedInUser()) {
+            this.userLogged = true;
+        }
     }
 
     onSubmit(signInForm: any): void {

@@ -32,21 +32,18 @@ var SignUpComponent = (function () {
         //console.log(this.userLogged);
     };
     SignUpComponent.prototype.onSubmit = function (signUpForm) {
-        var _this = this;
         if (this.signUpFirebaseAccountForm.valid) {
             var user = {
                 email: signUpForm.email,
                 password: signUpForm.password
             };
-            this.authService.registerUser(user)
-                .then(function () {
-                console.log('User created');
-                console.log(_this.authService.getLoggedInUser());
-            })
-                .catch(function () {
-                console.log('Error user created');
-            });
+            this.authService.registerUser(user);
         }
+    };
+    SignUpComponent.prototype.addUser = function () {
+        var user = this.authService.getLoggedInUser().uid;
+        var username = 'Test GMAIL';
+        this.authService.addUser(username, user);
     };
     SignUpComponent = __decorate([
         core_1.Component({

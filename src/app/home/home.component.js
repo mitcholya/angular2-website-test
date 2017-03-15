@@ -12,80 +12,34 @@ var core_1 = require('@angular/core');
 var data_service_1 = require('../shared/services/data.service');
 var auth_service_1 = require('../shared/services/auth.service');
 var HomeComponent = (function () {
-    //userLogged: boolean;
-    // searchTerm: string = '';
-    // searchControl: FormControl;
-    // items: any;
-    //heroes: Observable<Hero[]>;
-    //private searchTerms = new Subject<string>();
+    //userDataLoaded: boolean = false;
     function HomeComponent(dataService, authService) {
-        // //console.log(this.data.getPlaces().then((snapshot) => {
-        //     //console.log(snapshot.val());
-        // }));
-        // //console.log(this.data.searchService('Образование').then((snapshot) => {
-        //     //console.log(snapshot.val());
-        // }));
         this.dataService = dataService;
         this.authService = authService;
         this.firebaseAccount = {};
         this.userName = '';
-        this.userDataLoaded = false;
-        // this.searchControl = new FormControl();
     }
-    // search(term: string): void {
-    // // Push a search term into the observable stream.
-    // this.searchTerms.next(term);
-    // }
     HomeComponent.prototype.ngOnInit = function () {
-        // this.services = this.searchTerms
-        //     .debounceTime(300)        // wait for 300ms pause in events
-        //     .distinctUntilChanged()   // ignore if next search term is same as previous
-        //     .switchMap(term => term   // switch to new observable each time
-        //         // return the http search observable
-        //         ? this.dataSearch(term)
-        //         // or the observable of empty heroes if no search term
-        //         : Observable.of<IService[]>([]))
-        //     .catch(error => {
-        //         // TODO: real error handling
-        //         //console.log(`Error in component ... ${error}`);
-        //         return Observable.of<IService[]>([]);
-        //     });
-        // this.setFilteredItems();
-        // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-        //  this.setFilteredItems();
-        // });
-        this.loadUserProfile();
+        //this.loadUserProfile();
         //console.log(this.userLogged);
-        this.getUser();
-    };
-    // ngOnChanges(changes) {
-    // // Called right after our bindings have been checked but only
-    // // if one of our bindings has changed.
-    // //
-    // // changes is an object of the format:
-    // // {
-    // //   'prop': PropertyUpdate
-    // // }
-    // this.loadUserProfile();
-    // }
-    // ngDoCheck() {
-    // // Custom change detection
-    // this.loadUserProfile();
-    // }
-    HomeComponent.prototype.loadUserProfile = function () {
-        var _this = this;
-        this.firebaseAccount = this.authService.getLoggedInUser();
-        if (this.firebaseAccount) {
-            //this.userDataLoaded = false;
-            this.getUserName().then(function (snapshot) {
-                _this.userName = snapshot.val();
-                //console.log(this.userName);
-            });
+        //this.getUser();
+        if (this.authService.getLoggedInUser()) {
+            console.log(this.authService.getLoggedInUser().uid);
+            this.loadUserProfile();
+            this.userLogged = true;
+            this.getUser();
         }
     };
-    // setFilteredItems() {
-    //     this.items = this.dataSearch();
-    // }
+    HomeComponent.prototype.loadUserProfile = function () {
+        // this.firebaseAccount = this.authService.getLoggedInUser();
+        // if (this.firebaseAccount) {
+        var _this = this;
+        this.getUserName().then(function (snapshot) {
+            _this.userName = snapshot.val();
+            //console.log(this.userName);
+        });
+        //}
+    };
     HomeComponent.prototype.addService = function () {
         var service = {
             place: "Гай",
@@ -96,47 +50,34 @@ var HomeComponent = (function () {
         //this.data.addService(service);
     };
     HomeComponent.prototype.getUserName = function () {
-        //console.log(this.firebaseAccount);
-        //if (this.firebaseAccount) {
         return this.dataService.getUsername(this.authService.getLoggedInUser().uid);
-        //}
     };
-    // dataSearch(){
-    //     this.data.getServices().then((snapshot) => {
-    //             ////console.log(snapshot.val());
-    //            this.dataObservable =  this.itemsService.reversedItems<IService>(this.mappingService.getServices(snapshot))
-    //         });
-    //     return this.dataObservable;
-    // }
     HomeComponent.prototype.clearData = function () {
-        // if ( this.queryText.trim().length == 0) {
-        //     this.services = [];
-        // }
     };
     HomeComponent.prototype.onChanged = function (toggle) {
         //console.log(toggle);
         if (toggle == true) {
             this.loadUserProfile();
             this.userLogged = true;
-            this.userDataLoaded = true;
+            //this.userDataLoaded = true;
+            this.getUser();
         }
         else {
-            this.userName = 'Гость';
+            this.userName = '';
             this.userLogged = false;
-            this.userDataLoaded = false;
         }
     };
     HomeComponent.prototype.getUser = function () {
+        // this.firebaseAccount = this.authService.getLoggedInUser();
+        // if (this.firebaseAccount) {
         var _this = this;
-        this.firebaseAccount = this.authService.getLoggedInUser();
-        if (this.firebaseAccount) {
-            var uid = this.authService.getLoggedInUser().uid;
-            this.dataService.getUser(uid).then(function (snapshot) {
-                _this.user = snapshot.val();
-                console.log(_this.user);
-                _this.userDataLoaded = true;
-            });
-        }
+        var uid = this.authService.getLoggedInUser().uid;
+        this.dataService.getUser(uid).then(function (snapshot) {
+            _this.user = snapshot.val();
+            console.log(_this.user);
+            //this.userDataLoaded = true;
+        });
+        // }
     };
     HomeComponent.prototype.addGroup = function () {
         var group = {

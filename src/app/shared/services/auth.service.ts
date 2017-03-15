@@ -13,7 +13,25 @@ export class AuthService {
     constructor() { }
 
     registerUser(user: UserCredentials) {
-        return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            .then(() => {
+                firebase.auth().currentUser.sendEmailVerification()
+                    .then(() => {
+                        console.log('Verification Email Sent');
+                    }, (error) => {
+                        console.log('An error Occured:  ' + error.message)
+                    });
+
+                firebase.auth().signOut()
+                    .then(() => {
+                        console.log('SignOut');
+                    }, (error) => {
+                        console.log(error);
+                    });
+            }, (error) => {
+                console.log(error.code);
+                console.log(error.message);
+            });
     }
 
     signInUser(email: string, password: string) {
@@ -24,10 +42,9 @@ export class AuthService {
         return firebase.auth().signOut();
     }
 
-    addUser(username: string, dateOfBirth: string, uid: string) {
+    addUser(username: string, uid: string) {
         this.usersRef.child(uid).update({
-            username: username,
-            dateOfBirth: dateOfBirth
+            username: username
         });
     }
 

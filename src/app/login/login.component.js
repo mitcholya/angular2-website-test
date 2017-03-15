@@ -31,6 +31,9 @@ var LoginComponent = (function () {
         this.email = this.loginFirebaseAccountForm.controls['email'];
         this.password = this.loginFirebaseAccountForm.controls['password'];
         //console.log(this.userLogged);
+        if (this.authService.getLoggedInUser()) {
+            this.userLogged = true;
+        }
     };
     LoginComponent.prototype.onSubmit = function (signInForm) {
         var _this = this;

@@ -14,7 +14,24 @@ var AuthService = (function () {
         this.usersRef = firebase.database().ref('users');
     }
     AuthService.prototype.registerUser = function (user) {
-        return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            .then(function () {
+            firebase.auth().currentUser.sendEmailVerification()
+                .then(function () {
+                console.log('Verification Email Sent');
+            }, function (error) {
+                console.log('An error Occured:  ' + error.message);
+            });
+            firebase.auth().signOut()
+                .then(function () {
+                console.log('SignOut');
+            }, function (error) {
+                console.log(error);
+            });
+        }, function (error) {
+            console.log(error.code);
+            console.log(error.message);
+        });
     };
     AuthService.prototype.signInUser = function (email, password) {
         return firebase.auth().signInWithEmailAndPassword(email, password);
@@ -22,10 +39,9 @@ var AuthService = (function () {
     AuthService.prototype.signOut = function () {
         return firebase.auth().signOut();
     };
-    AuthService.prototype.addUser = function (username, dateOfBirth, uid) {
+    AuthService.prototype.addUser = function (username, uid) {
         this.usersRef.child(uid).update({
-            username: username,
-            dateOfBirth: dateOfBirth
+            username: username
         });
     };
     AuthService.prototype.getLoggedInUser = function () {
