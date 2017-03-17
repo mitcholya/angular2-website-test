@@ -9,16 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var AuthService = (function () {
-    function AuthService() {
+    function AuthService(router) {
+        this.router = router;
         this.usersRef = firebase.database().ref('users');
     }
     AuthService.prototype.registerUser = function (user) {
+        var _this = this;
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then(function () {
             firebase.auth().currentUser.sendEmailVerification()
                 .then(function () {
                 console.log('Verification Email Sent');
+                _this.router.navigate(['/email-verify']);
             }, function (error) {
                 console.log('An error Occured:  ' + error.message);
             });
@@ -52,7 +56,7 @@ var AuthService = (function () {
     };
     AuthService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], AuthService);
     return AuthService;
 }());

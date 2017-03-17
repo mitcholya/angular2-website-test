@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { UserCredentials } from '../interfaces';
-
+import { Router } from '@angular/router';
 declare var firebase: any;
+
 
 @Injectable()
 export class AuthService {
 
     usersRef: any = firebase.database().ref('users');
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     registerUser(user: UserCredentials) {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
@@ -18,6 +19,7 @@ export class AuthService {
                 firebase.auth().currentUser.sendEmailVerification()
                     .then(() => {
                         console.log('Verification Email Sent');
+                        this.router.navigate(['/email-verify']);
                     }, (error) => {
                         console.log('An error Occured:  ' + error.message)
                     });

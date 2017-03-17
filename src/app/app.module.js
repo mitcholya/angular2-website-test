@@ -43,6 +43,7 @@ var user_card_component_1 = require('./customer-list/user-card.component');
 var map_component_1 = require('./map/map.component');
 var map_orders_component_1 = require('./map/map-orders.component');
 var signup_component_1 = require('./login/signup.component');
+var email_verify_component_1 = require('./login/emal-verify/email-verify.component');
 var data_service_1 = require('./shared/services/data.service');
 var config_service_1 = require('./shared/utils/config.service');
 var items_service_1 = require('./shared/utils/items.service');
@@ -93,7 +94,8 @@ var AppModule = (function () {
                 customer_list_component_1.CustomerListComponent,
                 map_component_1.MapComponent,
                 map_orders_component_1.MapOrdersComponent,
-                signup_component_1.SignUpComponent
+                signup_component_1.SignUpComponent,
+                email_verify_component_1.EmailVerifyComponent
             ],
             providers: [
                 config_service_1.ConfigService,

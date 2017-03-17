@@ -10,6 +10,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { SignUpComponent } from './login/signup.component';
+import { EmailVerifyComponent } from './login/emal-verify/email-verify.component';
 
 const appRoutes: Routes = [
     { path: 'users', component: UserListComponent },
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'customer-list', component: CustomerListComponent},
     { path: 'signup', component: SignUpComponent },
+    { path: 'email-verify', component: EmailVerifyComponent},
     { path: '', component: HomeComponent }
 ];
 
